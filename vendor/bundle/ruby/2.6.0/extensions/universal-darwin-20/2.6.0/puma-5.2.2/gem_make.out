@@ -1,0 +1,36 @@
+current directory: /Users/ovidiubite/git/ovidiubite/qwizard-reactive/vendor/bundle/ruby/2.6.0/gems/puma-5.2.2/ext/puma_http11
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20210417-30437-ltsu2s.rb extconf.rb --with-opt-dir\=/usr/bin/openssl
+checking for BIO_read() in -lcrypto... yes
+checking for SSL_CTX_new() in -lssl... yes
+checking for openssl/bio.h... no
+checking for DTLS_method() in openssl/ssl.h... no
+checking for TLS_server_method() in openssl/ssl.h... no
+checking for SSL_CTX_set_min_proto_version(NULL, 0) in openssl/ssl.h... no
+checking for X509_STORE_up_ref()... yes
+checking for SSL_CTX_set_ecdh_auto(NULL, 0) in openssl/ssl.h... no
+creating Makefile
+
+current directory: /Users/ovidiubite/git/ovidiubite/qwizard-reactive/vendor/bundle/ruby/2.6.0/gems/puma-5.2.2/ext/puma_http11
+make "DESTDIR=" clean
+
+current directory: /Users/ovidiubite/git/ovidiubite/qwizard-reactive/vendor/bundle/ruby/2.6.0/gems/puma-5.2.2/ext/puma_http11
+make "DESTDIR="
+compiling http11_parser.c
+compiling mini_ssl.c
+compiling puma_http11.c
+linking shared-object puma/puma_http11.bundle
+ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.2.Internal.sdk/usr/local/libressl/lib'
+ld: warning: directory not found for option '-L/usr/bin/openssl/lib'
+ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.2.Internal.sdk/usr/local/lib'
+ld: warning: ignoring file mini_ssl.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file http11_parser.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ignoring file puma_http11.o, building for macOS-arm64e but attempting to link with file built for unknown-x86_64
+ld: warning: ld: warning: ignoring file /usr/local/lib/libcrypto.dylib, building for macOS-arm64e but attempting to link with file built for macOS-x86_64
+ignoring file /usr/local/lib/libssl.dylib, building for macOS-arm64e but attempting to link with file built for macOS-x86_64
+ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.2.Internal.sdk/usr/local/libressl/lib'
+ld: warning: directory not found for option '-L/usr/bin/openssl/lib'
+ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.2.Internal.sdk/usr/local/lib'
+
+current directory: /Users/ovidiubite/git/ovidiubite/qwizard-reactive/vendor/bundle/ruby/2.6.0/gems/puma-5.2.2/ext/puma_http11
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20210417-30437-5ny0e5/puma

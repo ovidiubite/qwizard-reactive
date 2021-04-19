@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @lobby.code %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @lobby.status %>
+</p>
+
+<p>
+  <strong>Current question index:</strong>
+  <%= @lobby.current_question_index %>
+</p>
+
+<%= link_to 'Edit', edit_lobby_path(@lobby) %> |
+<%= link_to 'Back', lobbies_path %>

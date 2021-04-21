@@ -1,0 +1,132 @@
+:root {
+  --purple: #8b5576;
+  --white: #ffffff;
+  --light-brown: #c3b8b4;
+  --black: #000;
+  --turqouise: #299ea3;
+  --dark-turqouise: #196771;
+  --light-grey: #f5f6f7;
+  --grey: #bfc6cd;
+  --asphalt: #fbfbf8;
+  --dark-asphalt: #b0a19e;
+  --darker-asphalt: #999999;
+  --deep-blue: #171c31;
+  --cotton: #edeae5;
+  --gold: #deb633;
+  --dirty-gold: #ca8142;
+  --faded-yellow: #fdf9c7;
+  --green: #4d907a;
+  --red: #d94f46;
+}
+
+html {
+  font-family: "merriweatherblack";
+}
+
+body {
+  background-color: #196771;
+  font-family: "mulishregular";
+}
+
+h1 {
+  font-size: 4rem;
+  font-family: "merriweatherbold";
+  line-height: 1.4;
+}
+
+h2 {
+  font-size: 3.2rem;
+  font-family: "merriweatherbold";
+  line-height: 1.4;
+}
+
+h3 {
+  font-size: 3rem;
+  font-family: "merriweatherbold";
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: 2.4rem;
+  font-family: "merriweatherbold";
+  margin-bottom: 3.2rem;
+  line-height: 1.4;
+}
+
+h6 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1.6;
+  font-family: "mulishbold";
+}
+
+.slim {
+  font-weight: 100;
+}
+
+.responsive-image {
+  width: 100%;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  content: "";
+  width: 1.6rem;
+  height: 3rem;
+  display: block;
+  position: relative;
+}
+
+.slick-next:before {
+  background-image: url("../svg/arrow-right.svg");
+  right: -6rem;
+}
+
+.slick-prev:before {
+  background-image: url("../svg/arrow-left.svg");
+  left: -6rem;
+}
+
+.horizontal-slider {
+  height: 1.4rem;
+  transform: translateZ(0);
+  width: calc(100% - 8.8rem);
+}
+
+.horizontal-slider .track {
+  height: 100%;
+  border-radius: 1rem;
+  background: var(--dark-asphalt);
+}
+
+.thumb {
+  background-image: url("../svg/yellowCrystal.svg");
+  width: 2.6rem;
+  height: 3.6rem;
+  margin-left: -0.8rem;
+  top: -1.2rem;
+}
+
+.slider-value {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.3rem;
+  width: 6.8rem;
+  top: -1rem;
+  right: -8.8rem;
+  padding: 0.1rem 0;
+  background: #fff;
+  box-shadow: 0px 2px 3px #00000029;
+  font-size: 1.8rem;
+}
+
+a:visited {
+  color: var(--black);
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
+}

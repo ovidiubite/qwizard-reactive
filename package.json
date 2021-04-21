@@ -6,6 +6,9 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
+    "postcss": "8.1",
+    "postcss-loader": "4.0.3",
+    "postcss-modules": "^4.0.0",
     "stimulus": "^2.0.0",
     "stimulus_reflex": "3.4.1",
     "turbolinks": "^5.2.0"

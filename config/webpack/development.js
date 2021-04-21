@@ -9,4 +9,18 @@ environment.config.devServer.contentBase = [
   path.join(__dirname, "../../app/reflexes"),
 ];
 
+environment.loaders.prepend('css', {
+    test: /\.css$/,
+    use: [
+      "style-loader",
+      {
+        loader: "css-loader",
+        options: {
+          importLoaders: 1,
+        },
+      },
+      "postcss-loader"
+    ]
+})
+
 module.exports = environment.toWebpackConfig();

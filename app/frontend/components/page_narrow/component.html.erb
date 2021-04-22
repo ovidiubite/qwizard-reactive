@@ -1,18 +1,20 @@
 <div class='narrowLayout'>
-  <div class= ''>
-    <div class='topLeft'></div>
-    <div class='topRigth'></div>
-    <div class='bottomLeft'></div>
-    <div class='bottomRight'></div>
-    <div class='bg'></div>
-    <div class='contentContainer'>
-      <%= link_to "/" do %>
-        <div class='logo'>
-          <img src=<%=asset_path('logo.svg')%> alt='qwizard logo'>
-        </div>
-      <% end %>
+  <div class= 'box-narrow'>
+    <div class= 'pageNarrow'>
+      <div class='topLeft'></div>
+      <div class='topRight'></div>
+      <div class='bottomLeft'></div>
+      <div class='bottomRight'></div>
+      <div class='bg'></div>
+      <div class='contentContainer'>
+        <%= link_to "/" do %>
+          <div class='logo'>
+            <img src=<%=asset_path('logo.svg')%> alt='qwizard logo'>
+          </div>
+        <% end %>
 
-      <%= content %>    
+        <%= content %>    
+      </div>
     </div>
   </div>
 </div>

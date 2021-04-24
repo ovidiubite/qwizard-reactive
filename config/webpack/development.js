@@ -9,8 +9,18 @@ environment.config.devServer.contentBase = [
   path.join(__dirname, "../../app/reflexes"),
 ];
 
-environment.loaders.prepend('css', {
-    test: /\.css$/,
+// Get the actual sass-loader config
+const sassLoader = environment.loaders.get('sass')
+const sassLoaderConfig = sassLoader.use.find(function(element) {
+  return element.loader === 'sass-loader'
+})
+
+// Use Dart-implementation of Sass (default is node-sass)
+const options = sassLoaderConfig.options
+options.implementation = require('sass')
+
+environment.loaders.prepend('sass', {
+    test: /.s(a|c)ss$/,
     use: [
       "style-loader",
       {
@@ -19,8 +29,10 @@ environment.loaders.prepend('css', {
           importLoaders: 1,
         },
       },
+      "sass-loader",
       "postcss-loader"
     ]
 })
+
 
 module.exports = environment.toWebpackConfig();

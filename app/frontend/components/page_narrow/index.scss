@@ -12,11 +12,11 @@
   position: relative;
   background-color: var(--cotton);
   padding: 2rem 0;
-  background-image: asset-url("pattern.png");
+  background-image: url("../../../javascript/src/images/pattern.png");
 }
 
 .topLeft {
-  background-image: asset-url("margins/top-left.png");
+  background-image: url("../../../javascript/src/images/margins/top-left.png");
   position: absolute;
   top: -7.3rem;
   left: -7.8rem;
@@ -26,7 +26,7 @@
 }
 
 .topRight {
-  background-image: asset-url("margins/top-right.png");
+  background-image: url("../../../javascript/src/images/margins/top-right.png");
   position: absolute;
   top: -8.4rem;
   right: -4.5rem;
@@ -36,7 +36,7 @@
 }
 
 .bottomLeft {
-  background-image: asset-url("margins/bottom-left.png");
+  background-image: url("../../../javascript/src/images/margins/bottom-left.png");
   position: absolute;
   bottom: -8.6rem;
   left: -4.4rem;
@@ -46,7 +46,7 @@
 }
 
 .bottomRight {
-  background-image: asset-url("margins/bottom-right.png");
+  background-image: url("../../../javascript/src/images/margins/bottom-right.png");
   position: absolute;
   bottom: -9.8rem;
   right: -7.3rem;
@@ -56,7 +56,7 @@
 }
 
 .leftSide {
-  background-image: asset-url("margins/left-side.png");
+  background-image: url("../../../javascript/src/images/margins/left-side.png");
   position: absolute;
   bottom: -9.8rem;
   left: -7.3rem;
@@ -78,7 +78,7 @@
   background-color: var(--cotton);
   transform: rotate(1deg);
   z-index: 0;
-  background-image: asset-url("pattern.png");
+  background-image: url("../../../javascript/src/images/pattern.png");
 }
 
 .pageNarrow:after {
@@ -90,7 +90,7 @@
   height: 5rem;
   background-color: var(--cotton);
   transform: rotate(1deg);
-  background-image: asset-url("pattern.png");
+  background-image: url("../../../javascript/src/images/pattern.png");
 }
 
 .contentContainer {
@@ -108,7 +108,7 @@
 }
 
 .bg {
-  background-image: asset-url("bg@2x.png");
+  background-image: url("../../../javascript/src/images/bg@2x.png");
   background-size: cover;
   background-position: center;
   width: 100vw;
@@ -126,5 +126,5 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: asset-url("pattern.png");
+  background-image: url("../../../javascript/src/images/pattern.png");
 }

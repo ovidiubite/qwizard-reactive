@@ -1,0 +1,59 @@
+.menu {
+  flex: 1 1;
+  max-height: calc(100vh - 55rem);
+  margin-bottom: 3rem;
+  overflow-x: hidden;
+}
+
+.contentContainer {
+  position: relative;
+  width: calc(100% + 2rem);
+  height: 100%;
+  left: 0rem;
+  padding-right: 2rem;
+  overflow-y: scroll;
+  box-sizing: content-box;
+}
+
+.logo {
+  padding: 3.4rem 4rem 2.2rem;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  color: var(--deep-blue);
+  display: flex;
+  align-items: center;
+  padding-left: 3rem;
+  box-sizing: border-box;
+  font-size: 2.4rem;
+}
+
+.text {
+  max-width: 25rem;
+  line-height: 1.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "mulishbold";
+}
+
+.icon {
+  margin-right: 1.5rem;
+
+  cursor: pointer;
+}
+
+.active .icon {
+  opacity: 1;
+}
+
+.active.menuItem {
+  background-color: var(--deep-blue);
+  color: var(--white);
+}
+
+.active .text {
+  color: var(--white);
+}

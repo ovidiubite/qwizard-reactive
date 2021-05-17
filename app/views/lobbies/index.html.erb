@@ -1,30 +1,33 @@
-<h1>Lobbies</h1>
+<%= render(BookPage::Component.new) do %>
+  <h1>Lobbies</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Status</th>
-      <th>Current question index</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @lobbies.each do |lobby| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= lobby.code %></td>
-        <td><%= lobby.status %></td>
-        <td><%= lobby.current_question_index %></td>
-        <td><%= link_to 'Show', lobby %></td>
-        <td><%= link_to 'Edit', edit_lobby_path(lobby) %></td>
-        <td><%= link_to 'Destroy', lobby, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Code</th>
+        <th>Status</th>
+        <th>Current question index</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @lobbies.each do |lobby| %>
+        <tr>
+          <td><%= lobby.code %></td>
+          <td><%= lobby.status %></td>
+          <td><%= lobby.current_question_index %></td>
+          <td><%= link_to 'Show', lobby %></td>
+          <td><%= link_to 'Edit', edit_lobby_path(lobby) %></td>
+          <td><%= link_to 'Destroy', lobby, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Lobby', new_lobby_path %>
+  <br>
+
+  <%= link_to 'New Lobby', new_lobby_path %>
+<% end %>
+
 

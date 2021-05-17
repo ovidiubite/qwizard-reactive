@@ -1,0 +1,23 @@
+<div class="box-wide">
+  <% if logo %>
+    <div class=<%= class_for "logo" %>>
+      <%= image_pack_tag "media/src/svg/logoWhite.svg", alt: 'White Qwizard logo' %>
+    </div>
+  <% end %>  
+  <div class=<%= class_for "bookPage" %> style=<%= logo ? "margin-top:3rem" : "margin-top:10rem"%> >
+    <div class=<%= class_for "arrowDown" %>></div>
+    <div class="<%= class_for "coverLeft" %> <%= class_for "black" %>"></div>
+    <div class="<%= class_for "coverRight" %> <%= class_for "black" %>"></div>
+    <div class="<%= class_for "spine" %> <%= class_for "black" %>"></div>
+    <div class=<%= class_for "pagesContainer"%>>
+      <div class="<%= class_for "coverLeft" %> <%= class_for "light" %>"></div>
+      <div class="<%= class_for "coverRight" %> <%= class_for "light" %>"></div>
+      <div style="bottom:'-2.9rem'" class="<%= class_for "spine" %> <%= class_for "white" %>"></div>
+      <div class=<%= class_for "pagesBg"%>></div>
+      <div class=<%= class_for "divider"%>></div>
+      <div class="<%= class_for "contentContainer" %> <%= basic ? (class_for "basic") : '' %>">
+        <%= content %>
+      </div>
+    </div>
+  </div>
+</div>

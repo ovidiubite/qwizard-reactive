@@ -13,8 +13,17 @@
     <p id="notice"><%= @notice %></p>
     <p id="error"><%= @error %></p>
 
-    <%= render(PageNarrow::Component.new) do %>
+    
+    <%
+=begin%>
+ <%= render(PageNarrow::Component.new) do %> 
+<%
+=end%>
       <%= yield %>
-    <% end %>
+    <%
+=begin%>
+ <% end %> 
+<%
+=end%>
   </body>
 </html>

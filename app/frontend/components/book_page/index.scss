@@ -1,0 +1,115 @@
+.logo {
+  margin-top: 2.4rem;
+  text-align: center;
+}
+
+.bookPage {
+  position: relative;
+  background-color: var(--black);
+  padding-bottom: 3rem;
+}
+
+.pagesContainer {
+  display: flex;
+  width: 93.5%;
+  min-height: 70rem;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0.7rem 0.3rem 0.8rem #00000033;
+  padding-bottom: 5rem;
+}
+
+.pagesBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.8rem;
+  background: var(--asphalt);
+  box-shadow: 0.7rem 0.3rem 0.8rem #00000033;
+  background-image: url("../../../javascript/src//images/pattern.png");
+}
+
+.contentContainer {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding-right: 5.9rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spine {
+  position: absolute;
+  width: 10rem;
+  height: 4rem;
+  bottom: -2.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.spine.black {
+  background: var(--black);
+}
+
+.spine.white {
+  background: var(--dark-asphalt);
+}
+
+.divider {
+  width: 0.4rem;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--light-grey);
+}
+
+.coverLeft,
+.coverRight {
+  position: absolute;
+  width: 50%;
+  height: 2rem;
+  bottom: -0.6rem;
+  border-radius: 0.8rem;
+}
+
+.coverLeft {
+  left: 0rem;
+  transform: rotate(1deg);
+}
+
+.coverRight {
+  right: 0rem;
+  transform: rotate(-1deg);
+}
+
+.coverLeft.black,
+.coverRight.black {
+  background: var(--black);
+}
+
+.coverLeft.light,
+.coverRight.light {
+  background: var(--dark-asphalt);
+}
+
+.basic {
+  padding: 0;
+}
+
+.arrowDown {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-top: 19px solid var(--dark-turqouise);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}

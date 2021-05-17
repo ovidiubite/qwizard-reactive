@@ -1,6 +1,10 @@
-class ApplicationViewComponent < ViewComponentContrib::Base
-  include ApplicationHelper
+require 'dry-initializer'
 
+class ApplicationViewComponent < ViewComponentContrib::Base
+  extend Dry::Initializer
+
+  include ApplicationHelper
+  
   private
 
   def identifier

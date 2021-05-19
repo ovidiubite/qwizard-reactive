@@ -1,0 +1,15 @@
+<div
+  class="<%= class_for('container') %>"
+  data-controller="<%= identifier %>"
+>
+  <%= @form.range_field @key,
+                        min:                         @min,
+                        max:                         @max,
+                        'data-action':               "input->#{identifier}#sliderChange",
+                        "data-#{identifier}-target": "rangeSlider"
+  %>
+
+  <%= content_tag(:p, class: class_for('value'), "data-#{identifier}-target": "outputValue") do %>
+    <%= @form.object.public_send(@key) %>
+  <% end %>
+</div>

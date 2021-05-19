@@ -28,6 +28,10 @@
   <br>
 
   <%= link_to 'New Lobby', new_lobby_path %>
+
+  <%= form_tag quizzes_path do %>
+    <%= render(Button::Component.new('New Quiz')) %>
+  <% end %>
 <% end %>
 
 

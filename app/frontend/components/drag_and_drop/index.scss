@@ -1,0 +1,54 @@
+.dragAndDrop {
+  width: 45rem;
+  height: 30rem;
+  margin-bottom: 7rem;
+}
+
+.Label {
+  font-size: 1.8rem;
+  color: var(--black);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 0.4rem dashed var(--light-brown);
+  height: 100%;
+  position: relative;
+}
+
+.fileInput {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  z-index: 777;
+  opacity: 0;
+}
+
+.placeholderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.placeholder {
+  font-size: 2rem;
+  margin-bottom: 7.6rem;
+}
+
+.imagePreview {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}

@@ -8,7 +8,25 @@ import consumer from "../channels/consumer";
 import controller from "../controllers/application_controller";
 
 const application = Application.start();
-const context = require.context("controllers", true, /_controller\.js$/);
+let context = require.context("controllers", true, /_controller\.js$/);
 application.load(definitionsFromContext(context));
+
+context = require.context("../../frontend/components", true, /index.js$/)
+context.keys().forEach((path) => {
+  const mod = context(path);
+
+  // Check whether a module has the Controller export defined
+  if (!mod.Controller) return;
+
+  // Convert path into a controller identifier:
+  //   example/index.js -> example
+  //   nav/user_info/index.js -> nav--user-info
+  const identifier = path.replace(/^\.\//, '')
+    .replace(/\/index\.js$/, '')
+    .replace(/\//, '--');
+
+  application.register(identifier, mod.Controller);
+});
+
 StimulusReflex.initialize(application, { consumer, controller, isolate: true });
 StimulusReflex.debug = process.env.RAILS_ENV === "development";

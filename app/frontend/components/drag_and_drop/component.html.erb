@@ -1,0 +1,33 @@
+<div data-controller="<%= identifier %>"
+     class="<%= class_for('dragAndDrop') %>"
+>
+  <%= @form.label :image, @label, class: class_for('Label') %>
+
+  <div class="<%= class_for('contentContainer') %>">
+    <%= @form.file_field :image,
+                         class:                       class_for('fileInput'),
+                         'data-action':               "input->#{identifier}#imageChange",
+                         "data-#{identifier}-target": "imageInput" %>
+    <%= content_tag(:div,
+                    class:                       class_for('placeholderContainer'),
+                    style:                       "display: #{@form.object.image.attached? ? 'none' : 'inherit'}",
+                    "data-#{identifier}-target": "placeholder") do %>
+      <div class="<%= class_for('placeholder') %>">
+        Drag and drop image
+      </div>
+      <%= render(Button::Component.new('UPLOAD')) %>
+    <% end %>
+
+    <% if @form.object.image.attached? %>
+      <%= content_tag(:div, '',
+                      class:                       class_for('imagePreview'),
+                      style:                       "background-image: url('#{url_for(@form.object.image)}')",
+                      "data-#{identifier}-target": "imagePreview") %>
+    <% else %>
+      <%= content_tag(:div, '',
+                      class:                       class_for('imagePreview'),
+                      style:                       "display: none",
+                      "data-#{identifier}-target": "imagePreview") %>
+    <% end %>
+  </div>
+</div>

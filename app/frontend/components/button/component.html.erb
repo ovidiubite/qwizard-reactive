@@ -1,0 +1,7 @@
+<button
+  class="<%= class_for("button") %>"
+  style="<%= "background-color: var(--#{@background_color}); color: var(--#{@color})" %>"
+  type="<%= @submit ? 'submit' : 'button' %>"
+>
+  <%= @title %>
+</button>

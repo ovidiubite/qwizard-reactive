@@ -1,0 +1,100 @@
+<%= render(BookPage::Component.new(basic: false)) do %>
+  <%= render(SideBar::Component.new) do %>
+    <div class=<%= class_for "quizName" %>>
+      <h4><%= @quiz.title.presence || 'untitled' %></h4>
+    </div>
+
+    <div class="<%= class_for('questionsContainer') %>">
+      <% @quiz.questions.each do |question, index| %>
+        <div class="<%= class_for('questionContainer') %> <%= @question.id == question.id && class_for('active') %>">
+          <%= link_to(question.title.presence || index,
+                      quiz_question_path(@quiz, question)) %>
+          <%= button_to(quiz_question_path(@quiz, question),
+                        method: :delete,
+                        class:  class_for('questionIcon'),
+                        type:   :button) do %>
+            <%= image_pack_tag('media/src/svg/trashDark.svg') %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="<%= class_for('questionContainer') %> <%= @question.id.nil? && class_for('active') %>">
+        <%= link_to('New Question',
+                    new_quiz_question_path(@quiz)) %>
+      </div>
+    </div>
+
+    <%= link_to root_path, class: class_for('sidebarButtonContainer') do %>
+      <%= render(Button::Component.new('DONE', submit: false)) %>
+    <% end %>
+  <% end %>
+
+  <div class="<%= class_for('quiz') %>">
+    <%= form_with(model: [@quiz, @question]) do |form| %>
+      <%= form.hidden_field :order %>
+
+      <% if form.object.errors.full_messages.present? %>
+        <p><%= form.object.errors.full_messages %></p>
+      <% end %>
+
+      <%= form.hidden_field :quiz_id %>
+
+      <div class="column-grid">
+        <div class="box-third">
+          <%= form.label :time_limit, class: class_for('label') %>
+          <%= render(Select::Component.new) do %>
+            <%= form.select :time_limit, [['20 sec', 20], ['30 sec', 30]] %>
+          <% end %>
+
+          <%= form.label :points, class: class_for('label') %>
+          <%= render(Slider::Component.new(form, :points)) %>
+
+          <%= form.label :answer_type, 'Answer options', class: class_for('label') %>
+          <%= render(Select::Component.new) do %>
+            <%= form.select :answer_type, [['Single select', 'single'], ['Multi select', 'multiple']] %>
+          <% end %>
+        </div>
+
+        <div class="box-two-thirds">
+          <%= render(DragAndDrop::Component.new(form, label: 'Question image')) %>
+        </div>
+      </div>
+
+      <%= form.label :title, 'Question', class: class_for('label') %>
+      <%= form.text_field :title, class: class_for('title') %>
+
+      <%= content_tag(:div, 'data-controller': identifier, "data-#{identifier}-active-class": class_for('active')) do %>
+        <div class="column-grid">
+          <%= form.fields_for :answers do |ff| %>
+            <% if ff.object.errors.full_messages.present? %>
+              <p><%= ff.object.errors.full_messages %></p>
+            <% end %>
+
+            <div class="box-half">
+              <%= content_tag(:div,
+                              class:                       "#{class_for('answer')} #{ff.object.is_correct && class_for('active')}",
+                              "data-#{identifier}-target": "selectedAnswerContainer") do %>
+                <%= content_tag(:div, '',
+                                class:                       "#{class_for('answerIcon')} #{ff.object.is_correct && class_for('active')}",
+                                "data-#{identifier}-target": "selectedAnswerIcon") %>
+
+                <%= ff.hidden_field :is_correct, "data-#{identifier}-target": "selectedAnswer" %>
+
+                <%= ff.text_field :title,
+                                  class:                       class_for('answerText'),
+                                  placeholder:                 'Type an answer...',
+                                  'data-action':               "click->#{identifier}#selectAnswer",
+                                  "data-#{identifier}-target": "answer"
+                %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="<%= class_for('createQuestionButtons') %>">
+        <%= render(Button::Component.new(form.object.id.present? ? 'SAVE' : 'ADD', background_color: 'purple')) %>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>

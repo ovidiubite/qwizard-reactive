@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :set_quiz
   before_action :set_question, only: %i[ show edit update destroy ]
 
   # GET /questions or /questions.json
@@ -13,6 +14,11 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+
+    @question.quiz_id = @quiz.id
+    @question.points  = 100
+    @question.order = @quiz.questions.count
+    @question.answers = 4.times.map { Answer.new }
   end
 
   # GET /questions/1/edit
@@ -25,10 +31,10 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: "Question was successfully created." }
+        format.html { redirect_to new_quiz_question_path(@quiz), notice: "Question was successfully created." }
         format.json { render :show, status: :created, location: @question }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, notice: @question.errors.full_messages }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
@@ -38,10 +44,10 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: "Question was successfully updated." }
+        format.html { redirect_to quiz_question_path(@quiz, @question), notice: "Question was successfully updated." }
         format.json { render :show, status: :ok, location: @question }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity, notice: @question.errors.full_messages }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
@@ -51,19 +57,26 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
+      format.html { redirect_to new_quiz_question_path(@quiz), notice: "Question was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def question_params
-      params.require(:question).permit(:title, :time_limit, :points, :answer_type, :order)
-    end
+  def set_quiz
+    @quiz = Quiz.find(params[:quiz_id])
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_question
+    @question = Question.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def question_params
+    params.require(:question)
+          .permit(:title, :time_limit, :points, :answer_type, :order, :quiz_id, :image,
+                  answers_attributes: [:id, :title, :is_correct])
+  end
 end

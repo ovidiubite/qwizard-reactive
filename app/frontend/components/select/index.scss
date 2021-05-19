@@ -1,0 +1,23 @@
+.selectContainer {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 3.2rem;
+}
+
+.selectContainer {
+  select {
+    padding: 0.7rem 3.6rem 0.7rem 1.6rem;
+    border: 0.1rem solid #c3b8b4;
+    font-size: 1.8rem;
+  }
+}
+
+.selectArrow {
+  position: absolute;
+  right: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.9rem;
+  height: 0.6rem;
+  background-image: url("../../../javascript/src/svg/chevronDown.svg");
+}

@@ -82,5 +82,3 @@ test:
 production:
   <<: *default
   database: qwizard_reactive_production
-  username: qwizard_reactive
-  password: <%= ENV['QWIZARD_REACTIVE_DATABASE_PASSWORD'] %>

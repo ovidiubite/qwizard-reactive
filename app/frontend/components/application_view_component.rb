@@ -4,6 +4,7 @@ class ApplicationViewComponent < ViewComponentContrib::Base
   extend Dry::Initializer
 
   include ApplicationHelper
+  include Turbo::FramesHelper
   
   private
 

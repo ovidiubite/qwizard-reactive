@@ -1,0 +1,3 @@
+<% @quiz.questions.each do |question| %>
+  <%= render(QuestionItem::Component.new(@quiz, question, active: @question.id == question.id)) %>
+<% end %>

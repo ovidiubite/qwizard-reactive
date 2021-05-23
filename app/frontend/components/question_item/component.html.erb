@@ -1,0 +1,12 @@
+<div class="<%= class_for('questionContainer') %> <%= @active && class_for('active') %>">
+  <%= link_to(question.title.presence || 'untitled',
+              quiz_question_path(@quiz, @question),
+              'data-turbo-frame': '_top') %>
+  <%= button_to(quiz_question_path(@quiz, @question),
+                method: :delete,
+                class:  class_for('questionIcon'),
+                type:   :button,
+                form: { 'data-turbo-frame': '_top' }) do %>
+    <%= image_pack_tag('media/src/svg/trashDark.svg') %>
+  <% end %>
+</div>

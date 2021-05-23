@@ -1,0 +1,28 @@
+.questionsContainer {
+  margin-bottom: 3rem;
+}
+
+.questionContainer {
+  display: flex;
+  justify-content: space-between;
+  color: var(--deep-blue);
+  align-items: center;
+  padding: 1rem 0 1rem 3rem;
+  box-sizing: border-box;
+  font-size: 2.4rem;
+}
+
+.questionContainer.active {
+  background-color: var(--deep-blue);
+
+  a {
+    color: var(--white);
+  }
+}
+
+.questionIcon {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}

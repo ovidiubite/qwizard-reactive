@@ -13,3 +13,8 @@ importAll(require.context('../src/svg', true));
 import '../src/stylesheets/application'
 
 import "controllers";
+
+import {Turbo} from "@hotwired/turbo-rails"
+
+document.documentElement.addEventListener('turbo:click', (e) => console.log(e.detail.url))
+document.documentElement.addEventListener('turbo:render', (e) => console.log(e))

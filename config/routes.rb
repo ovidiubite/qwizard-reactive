@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'lobbies#index'
-  
+
   devise_for :users
   resources :players
   resources :lobbies

@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
 
     @question.quiz_id = @quiz.id
     @question.points  = 100
-    @question.order = @quiz.questions.count
+    @question.order   = @quiz.questions.pluck(:order).max + 1
     @question.answers = 4.times.map { Answer.new }
   end
 
@@ -31,6 +31,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+        format.turbo_stream
         format.html { redirect_to new_quiz_question_path(@quiz), notice: "Question was successfully created." }
         format.json { render :show, status: :created, location: @question }
       else
@@ -44,6 +45,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
+        format.turbo_stream
         format.html { redirect_to quiz_question_path(@quiz, @question), notice: "Question was successfully updated." }
         format.json { render :show, status: :ok, location: @question }
       else

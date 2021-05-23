@@ -1,0 +1,29 @@
+.item {
+  position: relative;
+  margin: 0 0 7rem 3.5rem;
+  box-sizing: border-box;
+}
+
+.delete {
+  position: absolute;
+  padding: 0.7rem 0.9em;
+  right: 1.9rem;
+  top: 1.3rem;
+  background: var(--white);
+  border: 0;
+  cursor: pointer;
+}
+
+.icon {
+  width: 1.7rem;
+  height: 1.9rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.quizThumb {
+  margin-bottom: 2.4rem;
+}

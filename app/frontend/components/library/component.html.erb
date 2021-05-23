@@ -1,0 +1,49 @@
+<%= render(BookPage::Component.new(basic: false)) do %>
+  <%= render(SideBar::Component.new) do %>
+    <%= render(SideMenu::Component.new([
+            { id: 1, text: "Your Quizes", path: lobbies_path(current: true) },
+            { id: 2, text: "Past quizes taken", path: lobbies_path(current: false) },
+          ])) do %>
+    <% end %>
+  <% end %>
+  
+  <div class=<%= class_for 'quizLibrary' %>>
+    <div class=<%= class_for 'settingsContainer' %>>
+      <%=link_to 'user_path' do %>
+        <div class=<%= class_for 'settings'%>>
+          <%= image_pack_tag "media/src/svg/wizardHead.svg",
+            alt: 'Wizard head with a wizard hat',
+            class: class_for('settingsIcon')   %>          
+            <div>User settings</div>
+        </div>
+      <% end %> 
+
+      <div  class=<%= class_for 'logout' %>>
+        <%= image_pack_tag "media/src/svg/logout.svg",
+            alt: 'A door and an arrow suggesting exit',
+            class: class_for('settingsIcon') %> 
+      </div>
+    </div>
+
+    <div class="column-grid">
+      <div class="<%= class_for 'item' %> box-third">
+        <div class="<%= class_for 'create' %> quizThumb">
+          <h4 class=<%= class_for 'title'%>>New Quiz</h4>
+        </div>
+        <h6 class=<%= class_for 'text' %>>Create an enchanting quiz</h6>
+
+        <%= form_tag quizzes_path, class: class_for('buttonContainer') do %> 
+          <%= render(Button::Component.new('CREATE')) %>
+        <% end %>
+      </div>
+      <% @quizzes.each do |quiz| %>
+        <%= render(QuizTile::Component.new(quiz)) %>
+      <% end %>
+      <%
+=begin%>
+{type === "current" ? _renderCurrentQuizzes() : _renderPastQuizzes()} 
+<%
+=end%>
+    </div>
+  </div>
+<% end %>

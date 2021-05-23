@@ -3,7 +3,7 @@ class LobbiesController < ApplicationController
 
   # GET /lobbies or /lobbies.json
   def index
-    @lobbies = Lobby.all
+    @quizzes = Quiz.all
   end
 
   # GET /lobbies/1 or /lobbies/1.json

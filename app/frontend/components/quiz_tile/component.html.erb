@@ -1,0 +1,18 @@
+<div class="<%= class_for 'item' %> box-third" >
+  <div class='quizThumb'>
+    <%= image_pack_tag "media/src/svg/placeholder.svg",
+      alt: 'quiz name thumb',
+      class: 'responsive-image' %>
+  </div>
+  <h6 class=<%= class_for quiz.title %>></h6>
+  <div class=<%= class_for 'buttonContainer' %>>
+    <%= form_tag lobbies_path(quiz_id: quiz.id), class: 'sidebarButtonContainer' do %>
+      <%= render(Button::Component.new('CREATE LOBBY')) %>
+    <% end %>
+  </div>
+  <%= button_to quiz_path(quiz.id), class: class_for('delete'), method: :delete do %>
+    <%= image_pack_tag "media/src/svg/trashDark.svg",
+      alt: 'Trash can icon',
+      class: class_for('icon'), type: 'submit' %>          
+  <% end %>
+</div>

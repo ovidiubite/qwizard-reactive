@@ -39,11 +39,6 @@
       <% @quizzes.each do |quiz| %>
         <%= render(QuizTile::Component.new(quiz)) %>
       <% end %>
-      <%
-=begin%>
-{type === "current" ? _renderCurrentQuizzes() : _renderPastQuizzes()} 
-<%
-=end%>
     </div>
   </div>
 <% end %>

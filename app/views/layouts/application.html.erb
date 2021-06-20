@@ -14,16 +14,6 @@
     <p id="error"><%= @error %></p>
 
     
-    <%
-=begin%>
- <%= render(PageNarrow::Component.new) do %> 
-<%
-=end%>
-      <%= yield %>
-    <%
-=begin%>
- <% end %> 
-<%
-=end%>
+    <%= yield %>
   </body>
 </html>

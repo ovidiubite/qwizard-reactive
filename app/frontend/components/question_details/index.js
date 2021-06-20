@@ -3,7 +3,7 @@ import "./index.scss";
 import {Controller as BaseController} from "stimulus";
 
 export class Controller extends BaseController {
-  static targets = ["answer", "selectedAnswer", "selectedAnswerContainer", "selectedAnswerIcon", "form"];
+  static targets = ["answer", "selectedAnswer", "selectedAnswerContainer", "selectedAnswerIcon", "form", "orderInput"];
   static classes = ["active"]
 
   connect() {
@@ -11,6 +11,8 @@ export class Controller extends BaseController {
   }
 
   reset() {
+    const currentOrder = parseInt(this.orderInputTarget.value);
+
     this.formTarget.reset();
 
     document.querySelector('[data-controller="slider"]').slider.sliderChange();
@@ -18,6 +20,8 @@ export class Controller extends BaseController {
     this.selectedAnswerTargets.forEach(input => input.value = false);
     this.selectedAnswerContainerTargets.forEach(input => input.classList.remove(this.activeClass));
     this.selectedAnswerIconTargets.forEach(input => input.classList.remove(this.activeClass));
+
+    this.orderInputTarget.value = currentOrder + 1
   }
 
   selectAnswer(event) {

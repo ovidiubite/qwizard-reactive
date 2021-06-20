@@ -7,7 +7,7 @@
                   "data-#{identifier}-target":       'form',
                   "data-action":                     @question.id.blank? && "turbo:submit-end->#{identifier}#reset"
                 }) do |form| %>
-    <%= form.hidden_field :order %>
+    <%= form.hidden_field :order, "data-#{identifier}-target": 'orderInput' %>
 
     <% if form.object.errors.full_messages.present? %>
       <p><%= form.object.errors.full_messages %></p>

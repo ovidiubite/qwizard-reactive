@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
 
     @question.quiz_id = @quiz.id
     @question.points  = 100
-    @question.order   = @quiz.questions.pluck(:order).max + 1
+    @question.order   = (@quiz.questions.pluck(:order).max.presence || 0) + 1
     @question.answers = 4.times.map { Answer.new }
   end
 

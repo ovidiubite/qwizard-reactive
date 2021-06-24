@@ -1,24 +1,20 @@
 <div class=<%= class_for "menu"%>>
   <div class=<%= class_for "contentContainer"%>>
-    <%= items.each do |item| %>
-      <div class="<%= class_for "active" if item.path == curent_path %> <%= class_for "menuItem"%>">
-        <%= link_to(item.path, item.id, { style: 'flex:1'}) do %>
-          <div class=<%= class_for "text"%>>
-            <%= item.text %>
-          </div>
-        <% end %>
-        <% if item.icon %>
-          <%
-=begin%>
- @todo use reflex here for onClick event
- <div onClick={() => onIconClick(item.id)} class=<%= class_for "icon" > 
-<%
-=end%>
-          <div class=<%= class_for "icon" >
-             <%= image_pack_tag "media/src/svg/#{item.icon}.svg", alt: 'Trash bin icon' %> 
-          </div>
-        <% end %>
-      </div>
+    <%= turbo_frame_tag :questions do %>
+      <% items.each do |item| %>
+        <div class="<%= class_for "active" if current_page?(item[:path]) %> <%= class_for "menuItem"%>">
+          <%= link_to(item[:path], { style: 'flex:1', }.merge(item[:data_turbo_frame] || {} )) do %>
+            <div class=<%= class_for "text"%>>
+              <%= item[:text] %>
+            </div>
+          <% end %>
+          <% if item[:icon] %>
+            <div class=<%= class_for "icon"%>>
+               <%= image_pack_tag "media/src/svg/#{item[:icon]}.svg", alt: item[:alt_icon] %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

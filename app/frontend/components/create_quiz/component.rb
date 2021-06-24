@@ -9,7 +9,7 @@ class CreateQuiz::Component < ApplicationViewComponent
         path: quiz_question_path(@quiz, q),
         icon: 'trashDark',
         alt_icon: 'Trash bin icon',
-        data_turbo_frame: {}
+        data_turbo_frame: { 'data-turbo-frame': '_top' }
       }
     end << {
       text: 'New Question',

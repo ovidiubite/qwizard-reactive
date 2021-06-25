@@ -1,8 +1,8 @@
 <%= render(BookPage::Component.new(basic: false)) do %>
   <%= render(SideBar::Component.new) do %>
     <%= render(SideMenu::Component.new([
-            { id: 1, text: "Your Quizes", path: lobbies_path(current: true) },
-            { id: 2, text: "Past quizes taken", path: lobbies_path(current: false) },
+            { id: 1, text: "Your Quizes", path: lobbies_path },
+            { id: 2, text: "Past quizes taken", path: finished_lobbies_path },
           ])) do %>
     <% end %>
   <% end %>
@@ -36,7 +36,7 @@
           <%= render(Button::Component.new('CREATE')) %>
         <% end %>
       </div>
-      <% @quizzes.each do |quiz| %>
+      <% @lobbies.each do |quiz| %>
         <%= render(QuizTile::Component.new(quiz)) %>
       <% end %>
     </div>

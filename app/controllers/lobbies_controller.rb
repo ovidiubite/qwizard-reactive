@@ -1,9 +1,16 @@
 class LobbiesController < ApplicationController
-  before_action :set_lobby, only: %i[ show edit update destroy ]
+  before_action :set_lobby, only: %i[show edit update destroy]
 
-  # GET /lobbies or /lobbies.json
   def index
-    @quizzes = Quiz.all
+    # @lobbies = current_user.lobbies.active
+    @lobbies = Quiz.all
+  end
+
+  def finished
+    # @lobbies = current_user.lobbies.finished.joins(:quiz)
+    @lobbies = Quiz.all
+
+    render :index
   end
 
   # GET /lobbies/1 or /lobbies/1.json

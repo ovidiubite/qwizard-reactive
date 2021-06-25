@@ -4,7 +4,16 @@
       <h4><%= @quiz.title.presence || 'untitled' %></h4>
     </div>
 
-    <%= render(SideMenu::Component.new(build_sidemenu))%>
+    <%= turbo_frame_tag :questions do %>
+      <% @quiz.questions.each do |question| %>
+        <%= render(QuestionItem::Component.new(@quiz, question, active: @question.id == question.id)) %>
+      <% end %>
+    <% end %>
+
+    <div class="<%= class_for('questionContainer') %> <%= @question.id.nil? && class_for('active') %>">
+      <%= link_to('New Question', new_quiz_question_path(@quiz), 'data-turbo-frame': '_top') %>
+    </div>
+
     <%= link_to root_path, class: class_for('sidebarButtonContainer') do %>
       <%= render(Button::Component.new('DONE', submit: false)) %>
     <% end %>

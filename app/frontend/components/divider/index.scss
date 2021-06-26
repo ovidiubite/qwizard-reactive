@@ -1,0 +1,17 @@
+.dividerContainer {
+  display: flex;
+  align-items: center;
+}
+
+.left,
+.right {
+  width: 50%;
+  height: 0.1rem;
+  background: var(--grey);
+}
+
+.text {
+  padding: 0 1rem;
+  color: var(--black);
+  font-size: 1.4rem;
+}

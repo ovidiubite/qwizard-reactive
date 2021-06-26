@@ -1,0 +1,19 @@
+.sliderContainer {
+  width: 20rem;
+  background: var(--white);
+  padding: 5.2rem 2.3rem;
+}
+
+.caption {
+  font-size: 1.4rem;
+  margin: 1.5rem 0 1.6rem;
+}
+
+.image {
+  padding: 1.3rem;
+  background-color: var(--white);
+  display: flex !important;
+  width: initial !important;
+  justify-content: center;
+  height: 10rem;
+}

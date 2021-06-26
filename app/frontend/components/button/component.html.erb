@@ -1,6 +1,6 @@
 <button
   class="<%= class_for("button") %>"
-  style="<%= "background-color: var(--#{@background_color}); color: var(--#{@color})" %>"
+  style="<%= "background-color: var(--#{@background_color}); color: var(--#{@color}); #{@outline ? 'border: .2rem solid black' : ''}" %>"
   type="<%= @submit ? 'submit' : 'button' %>"
 >
   <%= @title %>

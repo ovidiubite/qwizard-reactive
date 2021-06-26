@@ -1,0 +1,22 @@
+<%= render(PageNarrow::Component.new) do %>
+  <%= render(Authentication::Header::Component.new('Send recovery token')) %>
+
+  <div style="width: 100%">
+    <%= form_with model: User.new, url: passwords_path do |form| %>
+      <%= render(TextInput::Component.new(form: form, field_name: 'email', label_text: 'Email', placeholder: 'email@email.com')) %>
+
+      <div class=<%= class_for 'buttonContainer' %>>
+        <%= link_to new_session_path do %>
+          <%= render(Button::Component.new(
+            'Cancel',
+            color: 'black',
+            background_color: 'transparent',
+            outline: true,
+            submit: false))
+          %>
+        <% end %>
+        <%= render(Button::Component.new('Send token', background_color: 'purple')) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

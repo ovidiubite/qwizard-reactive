@@ -1,0 +1,6 @@
+<div class=<%= class_for "inputContainer" %>>
+  <% unless @label_text.blank? %>
+    <%= @form.label @field_name, @label_text, class: class_for('label') %>
+  <% end %>
+  <%= @form.password_field @field_name, class: class_for('input'), placeholder: @placeholder %>
+</div>

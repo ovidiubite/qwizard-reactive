@@ -1,0 +1,24 @@
+.buttonContainer {
+  text-align: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sliderContainer {
+  width: 20rem;
+  background: var(--white);
+  padding: 5.2rem 2.3rem;
+}
+
+.slideImage {
+  margin: 0 auto;
+}
+
+.caption {
+  font-size: 1.4rem;
+  margin: 1rem 0 1.6rem;
+}

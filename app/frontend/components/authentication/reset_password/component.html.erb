@@ -1,0 +1,22 @@
+<%= render(PageNarrow::Component.new) do %>
+  <%= render(Authentication::Header::Component.new('Recover password')) %>
+
+  <div style="width: 100%">
+    <%= form_with model: User.new, url: password_path(@user.recovery_token), method: :put do |form| %>
+      <%= render(TextInput::Component.new(form: form, field_name: 'recovery_token', label_text: 'Recovery Token', placeholder: 'token')) %>
+
+      <div class=<%= class_for 'buttonContainer' %>>
+        <%= link_to new_session_path do %>
+          <%= render(Button::Component.new(
+            'Cancel',
+            color: 'black',
+            background_color: 'transparent',
+            outline: true,
+            submit: false))
+          %>
+        <% end %>
+        <%= render(Button::Component.new('Generate password', background_color: 'purple')) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

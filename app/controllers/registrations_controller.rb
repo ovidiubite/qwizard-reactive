@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
 
     if user.save
       session[:user_id] = user.id
-      redirect_to quizzes_path, success: 'You have successfully created your account.'
+      redirect_to lobbies_path, success: 'You have successfully created your account.'
     else
       render :new, error: user.errors.full_messages
     end

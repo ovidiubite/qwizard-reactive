@@ -2,13 +2,11 @@ class LobbiesController < ApplicationController
   before_action :set_lobby, only: %i[show edit update destroy]
 
   def index
-    # @lobbies = current_user.lobbies.active
-    @lobbies = Quiz.all
+    @lobbies = current_user.quizzes
   end
 
   def finished
-    # @lobbies = current_user.lobbies.finished.joins(:quiz)
-    @lobbies = Quiz.all
+    @lobbies = current_user.lobbies.finished.joins(:quiz)
 
     render :index
   end

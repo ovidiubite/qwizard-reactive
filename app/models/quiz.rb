@@ -1,5 +1,7 @@
 class Quiz < ApplicationRecord
-  # validates :title, presence: true
+  has_many :questions, dependent: :destroy
+
+  has_one_attached :image
 
   belongs_to :user
   has_many :questions, dependent: :destroy

@@ -1,10 +1,9 @@
 <%= render(PageNarrow::Component.new) do %>
   <%= render(Authentication::Header::Component.new('Sign up')) %>
 
-  <%= render(Authentication::HatSlider::Component.new) %>
-
   <div style="width: 100%">
     <%= form_with model: User.new, url: registrations_path do |form| %>
+      <%= render(Authentication::HatSlider::Component.new(form, :hat)) %>
       <%= render(TextInput::Component.new(form: form, field_name: 'email', label_text: 'Email', placeholder: 'email@email.com')) %>
       <%= render(TextInput::Component.new(form: form, field_name: 'username', label_text: 'Username', placeholder: 'John')) %>
       <%= render(PasswordInput::Component.new(form: form, field_name: 'password', label_text: 'Password', placeholder: 'Password')) %>

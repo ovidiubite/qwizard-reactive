@@ -1,0 +1,35 @@
+<%= render(PageNarrow::Component.new) do %>
+  <h4><%= quiz.title %> Lobby</h4>
+  <div class=<%= class_for 'inviteDetails' %>>
+    <%= image_pack_tag "media/src/images/wandAndHat.png", alt: 'wizard hat'%>
+    <div class=<%= class_for 'inviteHeading' %>>
+      <h6>
+        Master Qwizard
+        <%= quiz_master.username %>
+        summoned you for a battle of wits! Join a bewitching knowledge quiz!
+      </h6>
+    </div>
+  </div>
+  <div class=<%= class_for 'instructions' %>>
+    <h6>Secret spell code for others to join is</h6>
+    <h6 class=<%= class_for 'slim' %>>(Relax. It’s not Abracadabra)</h6>
+  </div>
+  <div class=<%= class_for 'link' %>><%= @lobby.code %></div>
+    <%= render(Button::Component.new('Copy link to share', background_color: 'light-brown')) %>
+  <div class=<%= class_for 'imageGrid' %>>
+    <div>
+      <%- @lobby.players.map do |item| %>
+        <div class=<%= class_for 'gridItem' %>>
+          <div class=<%= class_for 'image' %>>
+            <%= render(Authentication::Hat::Component.new(item.hat)) %>
+          </div>
+          <div class=<%= class_for 'name' %>><%= item.name %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <h6 class=<%= class_for 'loading' %>>
+    Waiting for fellow qwizards...
+  </h6>
+    <%= render(Button::Component.new('START', background_color: 'purple')) %>
+<% end %>

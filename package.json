@@ -13,6 +13,7 @@
     "postcss-modules": "^4.0.0",
     "sass": "^1.32.11",
     "stimulus": "^2.0.0",
+    "stimulus-carousel": "^2.0.0",
     "stimulus_reflex": "3.4.1"
   },
   "version": "0.1.0",

@@ -1,0 +1,19 @@
+<%= render(PageNarrow::Component.new) do %>
+  <%= form_with model: Player.new, url: lobby_join_path do |form| %>
+    <header class=<%= class_for 'header' %>>
+      <h4>Pick a proper wizard hat and a charming name</h4>
+    </header>
+
+    <%= render(Authentication::HatSlider::Component.new(form, :hat)) %>
+
+    <%= render(TextInput::Component.new(form: form, field_name: 'name', label_text: 'Qwizard name')) %>
+
+    <%= hidden_field_tag 'lobby_id', params[:lobby_id] %>
+
+    <div class=<%= class_for 'buttonContainer' %>>
+      <%= form_tag lobby_join_path(lobby_id: params[:lobby_id]) do %>
+        <%= render(Button::Component.new('READY', background_color: 'turqouise')) %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

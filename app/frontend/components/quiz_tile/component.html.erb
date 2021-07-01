@@ -6,13 +6,13 @@
   </div>
   <h6 class=<%= class_for quiz.title %>></h6>
   <div class=<%= class_for 'buttonContainer' %>>
-    <%= form_tag lobbies_path(quiz_id: quiz.id), class: 'sidebarButtonContainer' do %>
+    <%= form_tag lobbies_path(quiz_id: quiz.id, status: 'pending'), class: 'sidebarButtonContainer' do %>
       <%= render(Button::Component.new('CREATE LOBBY')) %>
     <% end %>
   </div>
   <%= button_to quiz_path(quiz.id), class: class_for('delete'), method: :delete do %>
     <%= image_pack_tag "media/src/svg/trashDark.svg",
       alt: 'Trash can icon',
-      class: class_for('icon'), type: 'submit' %>          
+      class: class_for('icon'), type: 'submit' %>
   <% end %>
 </div>

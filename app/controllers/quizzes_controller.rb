@@ -64,6 +64,6 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.fetch(:quiz, {})
+      params.permit(:title)
     end
 end

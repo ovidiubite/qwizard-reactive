@@ -1,4 +1,5 @@
 class LobbiesController < ApplicationController
+  skip_before_action :authenticate, only: %i[show pregame join]
   before_action :set_lobby, only: %i[show edit update destroy]
 
   def index
@@ -26,16 +27,19 @@ class LobbiesController < ApplicationController
 
   # POST /lobbies or /lobbies.json
   def create
-    @lobby = Lobby.new(lobby_params)
+    @lobby = Lobby.new(lobby_params.merge(code: SecureRandom.alphanumeric(6), status: 'pending'))
+    @player_master = Player.new(name: current_user.username, hat: current_user.hat, lobby: @lobby)
 
     respond_to do |format|
-      if @lobby.save
+      ActiveRecord::Base.transaction do
+        @lobby.save!
+        @player_master.save!
+      end
         format.html { redirect_to @lobby, notice: "Lobby was successfully created." }
         format.json { render :show, status: :created, location: @lobby }
-      else
+      rescue ActiveRecord::RecordInvalid
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @lobby.errors, status: :unprocessable_entity }
-      end
     end
   end
 
@@ -61,6 +65,17 @@ class LobbiesController < ApplicationController
     end
   end
 
+  def pregame;end
+
+  def join
+    params[:player][:hat] = params[:player][:hat].to_i
+    @lobby = Lobby.find(params[:lobby_id])
+
+    @player = @lobby.players.create(player_params)
+
+    redirect_to lobby_path(@lobby.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lobby
@@ -69,6 +84,10 @@ class LobbiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lobby_params
-      params.require(:lobby).permit(:code, :status, :current_question_index)
+      params.permit(:code, :quiz_id)
     end
+
+  def player_params
+    params.require(:player).permit(:name, :hat)
+  end
 end

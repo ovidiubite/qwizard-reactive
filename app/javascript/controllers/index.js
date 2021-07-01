@@ -6,6 +6,7 @@ import { definitionsFromContext } from "stimulus/webpack-helpers";
 import StimulusReflex from "stimulus_reflex";
 import consumer from "../channels/consumer";
 import controller from "../controllers/application_controller";
+import Carousel from "stimulus-carousel"
 
 const application = Application.start();
 let context = require.context("controllers", true, /_controller\.js$/);
@@ -30,3 +31,5 @@ context.keys().forEach((path) => {
 
 StimulusReflex.initialize(application, { consumer, controller, isolate: true });
 StimulusReflex.debug = process.env.RAILS_ENV === "development";
+
+application.register("carousel", Carousel)

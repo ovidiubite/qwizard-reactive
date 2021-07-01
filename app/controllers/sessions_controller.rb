@@ -5,10 +5,13 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(session_params)
+    @lobby = Lobby.find_by(code_params)
 
-    if user
+    if @lobby
+      redirect_to lobby_pregame_path(lobby_id: @lobby)
+    elsif user
       session[:user_id] = user.id
-      redirect_to quizzes_path
+      redirect_to lobbies_path
     else
       redirect_to new_password_path, error: 'Wrong username or password.'
     end
@@ -18,5 +21,9 @@ class SessionsController < ApplicationController
 
   def session_params
     params.require(:user).permit(:username, :password)
+  end
+
+  def code_params
+    params.require(:user).permit(:code)
   end
 end

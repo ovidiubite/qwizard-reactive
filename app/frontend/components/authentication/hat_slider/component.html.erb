@@ -8,7 +8,7 @@
       <% hats.map do |hat| %>
         <div class="swiper-slide">
           <div class=<%= class_for 'image' %>>
-            <%= render(Authentication::Hat::Component.new(hat)) %>
+            <%= render(Authentication::Hat::Component.new(hat, 'slideImage')) %>
           </div>
         </div>
       <% end %>

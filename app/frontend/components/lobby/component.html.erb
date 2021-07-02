@@ -16,18 +16,13 @@
   </div>
   <div class=<%= class_for 'link' %>><%= @lobby.code %></div>
     <%= render(Button::Component.new('Copy link to share', background_color: 'light-brown')) %>
-  <div class=<%= class_for 'imageGrid' %>>
-    <div>
-      <%- @lobby.players.map do |item| %>
-        <div class=<%= class_for 'gridItem' %>>
-          <div class=<%= class_for 'image' %>>
-            <%= render(Authentication::Hat::Component.new(item.hat)) %>
-          </div>
-          <div class=<%= class_for 'name' %>><%= item.name %></div>
-        </div>
-      <% end %>
+    <div class=<%= class_for 'imageGrid' %>>
+      <div id="players-list"  class="column-grid">
+        <%- @lobby.players.map do |item| %>
+          <%= render(PlayerBox::Component.new(item)) %>
+        <% end %>
+      </div>
     </div>
-  </div>
   <h6 class=<%= class_for 'loading' %>>
     Waiting for fellow qwizards...
   </h6>

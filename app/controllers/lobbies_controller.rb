@@ -71,7 +71,7 @@ class LobbiesController < ApplicationController
     params[:player][:hat] = params[:player][:hat].to_i
     @lobby = Lobby.find(params[:lobby_id])
 
-    @player = @lobby.players.create(player_params)
+    JoinGame.new(@lobby, player_params).call
 
     redirect_to lobby_path(@lobby.id)
   end

@@ -1,0 +1,3 @@
+<%= turbo_stream.append("players-list") do %>
+  <%= render(PlayerBox::Component.new(player)) %>
+<% end %>

@@ -1,5 +1,6 @@
 class Authentication::Hat::Component < ApplicationViewComponent
   param :hat_name
+  param :image_style
 
   HATS = {
       '0': 'star',
@@ -12,11 +13,21 @@ class Authentication::Hat::Component < ApplicationViewComponent
       '7': 'water',
   }
 
+  STYLES = %w[slideImage playerImage]
+
   def hat
     if hat_name.instance_of?(String)
       hat_name
     elsif
       HATS[hat_id]
+    end
+  end
+
+  def style
+    if STYLES.include?(image_style)
+      image_style
+    else
+      STYLES[0]
     end
   end
 end

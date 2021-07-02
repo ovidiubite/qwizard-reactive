@@ -9,10 +9,10 @@ import controller from "../controllers/application_controller";
 import Carousel from "stimulus-carousel"
 
 const application = Application.start();
-let context = require.context("controllers", true, /_controller\.js$/);
+let context = require.context("controllers", true, /_controller(\.js|\.ts)$/);
 application.load(definitionsFromContext(context));
 
-context = require.context("../../frontend/components", true, /index.js$/)
+context = require.context("../../frontend/components", true, /index(\.js|\.ts)$/)
 context.keys().forEach((path) => {
   const mod = context(path);
 
@@ -20,10 +20,10 @@ context.keys().forEach((path) => {
   if (!mod.Controller) return;
 
   // Convert path into a controller identifier:
-  //   example/index.js -> example
-  //   nav/user_info/index.js -> nav--user-info
+  //   example/index.ts -> example
+  //   nav/user_info/index.ts -> nav--user-info
   const identifier = path.replace(/^\.\//, '')
-    .replace(/\/index\.js$/, '')
+    .replace(/\/index(\.js|\.ts)$/, '')
     .replace(/\//, '--');
 
   application.register(identifier, mod.Controller);

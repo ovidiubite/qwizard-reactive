@@ -15,6 +15,7 @@ import '../src/stylesheets/application'
 import "controllers";
 
 import {Turbo} from "@hotwired/turbo-rails"
+window.Turbo = Turbo;
 
 document.documentElement.addEventListener('turbo:click', (e) => console.log(e.detail.url))
 document.documentElement.addEventListener('turbo:render', (e) => console.log(e))

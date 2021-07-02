@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
   def current_user
     User.find(session[:user_id])
   end
+
+  def render_flash
+    render turbo_stream: turbo_stream.update('flash', partial: 'shared/flash')
+  end
 end

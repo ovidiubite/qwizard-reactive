@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to lobbies_path
     else
-      redirect_to new_password_path, error: 'Wrong username or password.'
+      flash[:alert] = 'Wrong username or password.'
+      render_flash
     end
   end
 

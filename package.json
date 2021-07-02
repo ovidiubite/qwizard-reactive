@@ -2,8 +2,8 @@
   "name": "qwizard-reactive",
   "private": true,
   "dependencies": {
+    "@hotwired/turbo-rails": "^7.0.0-beta.8",
     "@babel/preset-typescript": "^7.14.5",
-    "@hotwired/turbo-rails": "^7.0.0-beta.5",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -17,6 +17,7 @@
     "stimulus": "^2.0.0",
     "stimulus-carousel": "^2.0.0",
     "stimulus_reflex": "3.4.1",
+    "toastr": "^2.1.4",
     "typescript": "^4.3.5"
   },
   "version": "0.1.0",

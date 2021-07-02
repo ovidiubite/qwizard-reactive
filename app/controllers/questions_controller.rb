@@ -31,8 +31,9 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+        flash[:notice] = 'Question was successfully created.'
         format.turbo_stream
-        format.html { redirect_to new_quiz_question_path(@quiz), notice: "Question was successfully created." }
+        format.html { redirect_to new_quiz_question_path(@quiz) }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new, status: :unprocessable_entity, notice: @question.errors.full_messages }

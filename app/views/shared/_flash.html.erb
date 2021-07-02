@@ -1,0 +1,4 @@
+<% flash.each do  |type, message| %>
+  <% type = type.to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+  <%= render Toastr::Component.new(type, message) %>
+<% end %>

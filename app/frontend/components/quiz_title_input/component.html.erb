@@ -1,0 +1,11 @@
+<%= turbo_frame_tag :quiz_title do %>
+  <%= form_with(model: @quiz, class: class_for('quizName')) do |form| %>
+    <%= form.text_field :title, placeholder: 'untitled' %>
+
+    <%= render(Button::Component.new(
+      'Save',
+      color: 'black',
+      background_color: 'transparent'))
+    %>
+  <% end %>
+<% end %>

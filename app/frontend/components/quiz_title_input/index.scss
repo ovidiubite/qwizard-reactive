@@ -1,0 +1,23 @@
+.quizName {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  line-height: 2;
+
+  background: #fdf9c7;
+
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.quizName {
+  h4 {
+    margin: 0;
+  }
+}
+
+.quizName {
+  button {
+    min-width: 10rem;
+  }
+}

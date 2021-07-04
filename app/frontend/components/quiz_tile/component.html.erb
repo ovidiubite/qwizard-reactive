@@ -4,7 +4,7 @@
       alt: 'quiz name thumb',
       class: 'responsive-image' %>
   </div>
-  <h6 class=<%= class_for quiz.title %>></h6>
+  <h6><%= quiz.title %></h6>
   <div class=<%= class_for 'buttonContainer' %>>
     <%= form_tag lobbies_path(quiz_id: quiz.id, status: 'pending'), class: 'sidebarButtonContainer' do %>
       <%= render(Button::Component.new('CREATE LOBBY')) %>

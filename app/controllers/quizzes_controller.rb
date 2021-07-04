@@ -21,7 +21,7 @@ class QuizzesController < ApplicationController
 
   # POST /quizzes or /quizzes.json
   def create
-    @quiz = current_user.quizzes.build(quiz_params)
+    @quiz = current_user.quizzes.build
 
     respond_to do |format|
       if @quiz.save
@@ -38,9 +38,13 @@ class QuizzesController < ApplicationController
   def update
     respond_to do |format|
       if @quiz.update(quiz_params)
+        flash[:notice] = 'Quiz was successfully updated.'
+        format.turbo_stream
         format.html { redirect_to @quiz, notice: "Quiz was successfully updated." }
         format.json { render :show, status: :ok, location: @quiz }
       else
+        flash[:notice] = 'Quiz was not successfully updated.'
+        format.turbo_stream
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
@@ -64,6 +68,6 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.permit(:title)
+      params.require(:quiz).permit(:title)
     end
 end

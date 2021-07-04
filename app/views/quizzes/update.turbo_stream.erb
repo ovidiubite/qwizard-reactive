@@ -1,0 +1,4 @@
+<%= render_flash %>
+<%= turbo_stream.replace('quiz_title') do %>
+  <%= render(QuizTitleInput::Component.new(@quiz)) %>
+<% end %>

@@ -1,8 +1,6 @@
 <%= render(BookPage::Component.new(basic: false)) do %>
   <%= render(SideBar::Component.new) do %>
-    <div class=<%= class_for "quizName" %>>
-      <h4><%= @quiz.title.presence || 'untitled' %></h4>
-    </div>
+    <%= render(QuizTitleInput::Component.new(@quiz)) %>
 
     <%= turbo_frame_tag :questions do %>
       <% @quiz.questions.each do |question| %>

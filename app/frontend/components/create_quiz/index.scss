@@ -1,28 +1,3 @@
-.quizName {
-  position: relative;
-  line-height: 2;
-  text-align: center;
-  cursor: pointer;
-}
-
-.quizName {
-  h4 {
-    //margin-bottom: 0;
-    background: #fdf9c7;
-  }
-}
-
-.quizName:after {
-  content: "";
-  position: absolute;
-  width: 2.4rem;
-  height: 2.4rem;
-  top: 25%;
-  transform: translateY(-50%);
-  right: 2rem;
-  background-image: url("../../../javascript/src/svg/gear.svg");
-}
-
 .sidebarButtonContainer {
   display: flex;
   flex-direction: column;

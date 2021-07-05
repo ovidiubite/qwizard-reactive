@@ -1,4 +1,4 @@
-class Authentication::HatSlider::Component < ApplicationViewComponent
+class HatSlider::Component < ApplicationViewComponent
   param :form
   param :key
 

@@ -4,7 +4,7 @@
       <h4>Pick a proper wizard hat and a charming name</h4>
     </header>
 
-    <%= render(Authentication::HatSlider::Component.new(form, :hat)) %>
+    <%= render(HatSlider::Component.new(form, :hat)) %>
 
     <%= render(TextInput::Component.new(form: form, field_name: 'name', label_text: 'Qwizard name')) %>
 

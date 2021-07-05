@@ -1,4 +1,4 @@
-class Authentication::Hat::Component < ApplicationViewComponent
+class Hat::Component < ApplicationViewComponent
   param :hat_name
   param :image_style
 

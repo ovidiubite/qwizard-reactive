@@ -1,5 +1,6 @@
 <div class=<%= class_for 'sliderContainer' %>>
   <div data-controller="<%= identifier %>" class="swiper-container w-30 my-5"
+       data-<%= identifier %>-hats-value="<%= User.hats.invert.to_json %>"
   <%= "data-#{identifier}-options-value" %> = '{
     "navigation": { "nextEl": ".swiper-button-next",
                     "prevEl": ".swiper-button-prev"}}'>
@@ -8,7 +9,7 @@
       <% hats.map do |hat| %>
         <div class="swiper-slide">
           <div class=<%= class_for 'image' %>>
-            <%= render(Authentication::Hat::Component.new(hat, 'slideImage')) %>
+            <%= render(Hat::Component.new(hat, 'slideImage')) %>
           </div>
         </div>
       <% end %>

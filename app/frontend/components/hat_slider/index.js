@@ -1,0 +1,21 @@
+import "./index.scss";
+import Carousel from "stimulus-carousel"
+
+export class Controller extends Carousel {
+  static targets = ["hat"];
+  static values = { hats: Object }
+
+  connect() {
+    super.connect();
+
+    this.swiper.activeIndex = Object.keys(this.hatsValue).find(key => this.hatsValue[key] === this.hatTarget.value);
+  }
+
+  next() {
+    this.hatTarget.value = this.hatsValue[this.swiper.activeIndex + 1];
+  }
+
+  previous() {
+    this.hatTarget.value = this.hatsValue[this.swiper.activeIndex - 1];
+  }
+}

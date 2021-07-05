@@ -1,0 +1,17 @@
+<%= render(HatSlider::Component.new(@form, :hat)) %>
+<%= render(TextInput::Component.new(form: @form, field_name: 'email', label_text: 'Email', placeholder: 'email@email.com')) %>
+<%= render(TextInput::Component.new(form: @form, field_name: 'username', label_text: 'Username', placeholder: 'John')) %>
+<%= render(PasswordInput::Component.new(form: @form, field_name: 'password', label_text: 'Password', placeholder: 'Password')) %>
+
+<div class=<%= class_for 'buttonContainer' %>>
+  <%= link_to :back do %>
+    <%= render(Button::Component.new(
+      'Cancel',
+      color: 'black',
+      background_color: 'transparent',
+      outline: true,
+      submit: false))
+    %>
+  <% end %>
+  <%= render(Button::Component.new(@submit_label, background_color: 'purple')) %>
+</div>

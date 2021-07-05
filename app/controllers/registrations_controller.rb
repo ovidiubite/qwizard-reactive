@@ -4,7 +4,6 @@ class RegistrationsController < ApplicationController
   def new; end
 
   def create
-    params[:user][:hat] = params[:user][:hat].to_i
     user = User.new(users_params)
 
     if user.save

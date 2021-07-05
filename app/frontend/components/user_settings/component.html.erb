@@ -1,0 +1,9 @@
+<%= render(PageNarrow::Component.new) do %>
+  <%= render(Authentication::Header::Component.new('Settings')) %>
+
+  <div style="width: 100%">
+    <%= form_with model: @user, url: update_user_settings_path do |form| %>
+      <%= render(UserForm::Component.new(form: form, submit_label: 'Save')) %>
+  <% end %>
+  </div>
+<% end %>

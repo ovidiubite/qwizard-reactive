@@ -1,0 +1,19 @@
+<div class=<%= class_for 'topPlayers' %>>
+  <% @score.slice(0, 3).map.with_index do |entry, idx| %>
+    <div class=<%= class_for 'item' %>>
+      <div class=<%= class_for 'contentContainer' %>>
+        <div>
+          <%= render(Hat::Component.new(entry[:hat], 'topPlayerImage')) %>
+        </div>
+        <div class=<%= class_for 'name' %>><%= entry[:name] %></div>
+        <div class=<%= class_for 'score' %>><%= entry[:points] %></div>
+        <div class=<%= class_for 'itemFrame' %>>
+          <%= image_pack_tag "media/src/svg/frame#{FRAMES[idx]}.svg", alt: 'A green painting frame' %>
+        </div>
+        <div class=<%= class_for 'rubyContainer' %>>
+          <%= image_pack_tag "media/src/svg/top#{idx + 1}.svg", alt: 'A yellow ruby' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

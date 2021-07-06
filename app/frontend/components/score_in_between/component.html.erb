@@ -1,0 +1,17 @@
+<div class=<%= class_for 'inbetween' %>>
+  <div class=<%= class_for 'bg' %>></div>
+  <div class=<%= class_for 'box-wide' %>>
+    <div class=<%= class_for 'inbetweenContentContainer' %>>
+      <div class=<%= class_for 'logo' %>>
+        <%= image_pack_tag "media/src/svg/logoWhite.svg", alt: 'White Qwizard logo' %>
+      </div>
+      <h1 class=<%= class_for 'heading' %>>Time's up</h1>
+      <h3 class=<%= class_for 'count' %>>
+        <%= question_index %> / <%= total_questions %>
+        <br />
+        Scoreboard
+      </h3>
+      <%= render(LeaderBoard::Component.new(score, current_player)) %>
+    </div>
+  </div>
+</div>

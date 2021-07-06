@@ -5,3 +5,20 @@
 .playerImage {
   width: 8rem;
 }
+
+.scoreImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.2rem;
+  height: 5.2rem;
+  margin-right: 3rem;
+  background: var(--white);
+  padding: 0.4rem;
+  box-sizing: border-box;
+}
+
+.topPlayerImage {
+  width: 10.8rem;
+  margin: 3.79rem 0 1.4rem 0;
+}

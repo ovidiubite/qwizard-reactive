@@ -1,0 +1,69 @@
+.topPlayers {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 3.35rem;
+}
+
+.item:before {
+  content: "";
+  position: absolute;
+  width: 16rem;
+  height: 23rem;
+  top: calc(50% + 1rem);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--cotton);
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  width: 21.1rem;
+  height: 29rem;
+  font-size: 1.8rem;
+}
+
+.contentContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemFrame {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.rubyContainer {
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ruby {
+  width: 4.1rem;
+  height: 6.9rem;
+}
+
+.imageContainer {
+  width: 10.8rem;
+  margin: 3.79rem 0 1.4rem 0;
+}
+
+.name {
+  margin-bottom: 3.45rem;
+}
+
+.score {
+  font-size: 2.6rem;
+}

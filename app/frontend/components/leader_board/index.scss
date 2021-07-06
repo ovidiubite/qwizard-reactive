@@ -1,0 +1,79 @@
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 63.1rem;
+  width: 100%;
+  padding: 4rem 9.4rem;
+  background-color: var(--cotton);
+  background-image: url("../../../javascript/src/images/pattern.png");
+  box-sizing: border-box;
+}
+
+.leaderboard:before {
+  content: "";
+  position: absolute;
+  top: -0.4rem;
+  left: 0;
+  width: 100%;
+  height: 2rem;
+  background-color: var(--cotton);
+  background-image: url("../../../javascript/src/images/pattern.png");
+  transform: rotate(-1deg);
+  z-index: 0;
+}
+
+.item {
+  width: 100%;
+  max-width: 45rem;
+  height: 6.5rem;
+  padding: 0 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.highlighted {
+  width: 100%;
+  max-width: 45rem;
+  height: 6.5rem;
+  padding: 0 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: var(--dark-asphalt);
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.2rem;
+  height: 5.2rem;
+  margin-right: 3rem;
+  background: var(--white);
+  padding: 0.4rem;
+  box-sizing: border-box;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7.2rem;
+  border-radius: 1.8rem;
+  height: 3.1rem;
+  font-size: 1.8rem;
+  background-color: var(--gold);
+  font-weight: bold
+}

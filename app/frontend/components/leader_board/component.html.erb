@@ -1,0 +1,14 @@
+<div class=<%= class_for 'leaderboard' %>>
+  <% scores.map.with_index do |entry, idx| %>
+    <div class=<%= highlighted?(entry[:id]) ? (class_for 'highlighted') : (class_for 'item') %>>
+      <div class=<%= class_for 'player' %>>
+        <div>
+          <%= render(Hat::Component.new(entry[:hat], 'scoreImage')) %>
+        </div>
+        <span><%= idx + (hide_to_three ? 4 : 1) %>.</span>
+        <span><%= entry[:name] %></span>
+      </div>
+      <div class=<%= class_for 'score' %>><%= entry[:points] %></div>
+    </div>
+  <% end %>
+</div>

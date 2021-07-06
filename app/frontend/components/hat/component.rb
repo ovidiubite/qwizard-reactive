@@ -13,7 +13,7 @@ class Hat::Component < ApplicationViewComponent
       '7': 'water',
   }
 
-  STYLES = %w[slideImage playerImage]
+  STYLES = %w[slideImage playerImage scoreImage topPlayerImage]
 
   def hat
     if hat_name.instance_of?(String)

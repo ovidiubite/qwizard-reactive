@@ -66,7 +66,6 @@ class LobbiesController < ApplicationController
   def pregame;end
 
   def join
-    params[:player][:hat] = params[:player][:hat].to_i
     @lobby = Lobby.find(params[:lobby_id])
 
     JoinGame.new(@lobby, player_params).call

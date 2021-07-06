@@ -8,7 +8,10 @@ export class Controller extends Carousel {
   connect() {
     super.connect();
 
-    this.swiper.activeIndex = Object.keys(this.hatsValue).find(key => this.hatsValue[key] === this.hatTarget.value);
+    if (this.hatTarget.value) {
+      this.swiper.activeIndex = Object.keys(this.hatsValue)
+        .find(key => this.hatsValue[key] === this.hatTarget.value);
+    }
   }
 
   next() {

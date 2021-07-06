@@ -1,0 +1,21 @@
+<div class=<%= class_for 'hallOfFameContentContainer' %>>
+  <div class="box-wide">
+    <div class=<%= class_for 'hallOfFame' %>>
+      <div class=<%= class_for 'logo' %>>
+        <%= image_pack_tag "media/src/svg/logo.svg", alt: 'qwizard logo' %>
+      </div>
+      <div class=<%= class_for 'contentContainer' %>>
+        <h2 class=<%= class_for 'title' %>><%= quiz_title %> Hall of Fame</h2>
+        <%= render(TopPlayers::Component.new(score)) %>
+        <% if score.length > 3 %>
+          <%= render(LeaderBoard::Component.new(score, current_player, hide_to_three: true)) %>
+        <% end %>
+        <%= link_to lobbies_path do %>
+          <div class=<%= class_for 'button' %>>
+            <%= render(Button::Component.new('Enter a new quiz', background_color: 'purple')) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

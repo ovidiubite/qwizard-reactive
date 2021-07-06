@@ -30,17 +30,15 @@ class LobbiesController < ApplicationController
     @lobby = Lobby.new(lobby_params.merge(code: SecureRandom.alphanumeric(6), status: 'pending'))
     @player_master = Player.new(name: current_user.username, hat: current_user.hat, lobby: @lobby)
 
-    respond_to do |format|
-      ActiveRecord::Base.transaction do
-        @lobby.save!
-        @player_master.save!
-      end
-        format.html { redirect_to @lobby, notice: "Lobby was successfully created." }
-        format.json { render :show, status: :created, location: @lobby }
-      rescue ActiveRecord::RecordInvalid
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @lobby.errors, status: :unprocessable_entity }
+    ActiveRecord::Base.transaction do
+      @lobby.save!
+      @player_master.save!
     end
+
+    redirect_to @lobby, notice: "Lobby was successfully created."
+  rescue ActiveRecord::RecordInvalid
+    flash[:error] = 'Lobby was not successfully created.'
+    render_flash
   end
 
   # PATCH/PUT /lobbies/1 or /lobbies/1.json

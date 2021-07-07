@@ -19,7 +19,7 @@ class Hat::Component < ApplicationViewComponent
     if hat_name.instance_of?(String)
       hat_name
     elsif
-      HATS[hat_id]
+      HATS[hat_name]
     end
   end
 

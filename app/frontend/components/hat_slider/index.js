@@ -11,6 +11,8 @@ export class Controller extends Carousel {
     if (this.hatTarget.value) {
       this.swiper.activeIndex = Object.keys(this.hatsValue)
         .find(key => this.hatsValue[key] === this.hatTarget.value);
+    } else {
+      this.hatTarget.value = this.hatsValue[0]
     }
   }
 

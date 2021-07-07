@@ -40,6 +40,6 @@ module QwizardReactive
 
     # Enable ViewComponents previews
     config.view_component.show_previews = true
-    config.view_component_storybook.stories_path = Rails.root.join("spec/components/stories")
+    config.view_component_storybook.stories_path = Rails.root.join("app/frontend/components")
   end
 end

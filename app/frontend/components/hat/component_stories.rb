@@ -1,4 +1,4 @@
-class HatComponentStories < ViewComponent::Storybook::Stories
+class Hat::ComponentStories < ViewComponent::Storybook::Stories
   story(:with_slide_image) do
     controls do
       select(:hat_name, ['star', 'earth', 'spiral', 'gnome', 'nature', 'fire', 'swamp', 'water'], 'star')

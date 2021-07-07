@@ -146,3 +146,7 @@ yarn-debug.log*
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/rails,rubymine,visualstudiocode,git
+
+### Storybook ###
+**/*.stories.json
+public/_storybook/*

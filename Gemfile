@@ -54,3 +54,6 @@ gem "stimulus_reflex", "~> 3.4"
 
 gem "view_component", "~> 2.30", require: "view_component/engine"
 gem "view_component-contrib"
+gem 'view_component_storybook'
+
+gem 'rack-cors'

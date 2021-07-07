@@ -3,7 +3,7 @@
     <div class=<%= class_for 'item' %>>
       <div class=<%= class_for 'contentContainer' %>>
         <div>
-          <%= render(Hat::Component.new(entry[:hat], 'topPlayerImage')) %>
+          <%= render(Hat::Component.new(hat_name: entry[:hat], image_style: 'topPlayerImage')) %>
         </div>
         <div class=<%= class_for 'name' %>><%= entry[:name] %></div>
         <div class=<%= class_for 'score' %>><%= entry[:points] %></div>

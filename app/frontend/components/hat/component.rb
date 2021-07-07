@@ -1,6 +1,6 @@
 class Hat::Component < ApplicationViewComponent
-  param :hat_name
-  param :image_style
+  option :hat_name
+  option :image_style
 
   HATS = {
       '0': 'star',

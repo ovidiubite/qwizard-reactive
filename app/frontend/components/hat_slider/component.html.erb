@@ -9,7 +9,7 @@
       <% hats.map do |hat| %>
         <div class="swiper-slide">
           <div class=<%= class_for 'image' %>>
-            <%= render(Hat::Component.new(hat, 'slideImage')) %>
+            <%= render(Hat::Component.new(hat_name: hat, image_style: 'slideImage')) %>
           </div>
         </div>
       <% end %>

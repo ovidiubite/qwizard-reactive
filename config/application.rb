@@ -12,6 +12,8 @@ require "action_mailbox/engine"
 require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
+require "view_component/engine"
+require "view_component/storybook/engine"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.require "view_component/engine"
@@ -35,5 +37,9 @@ module QwizardReactive
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Enable ViewComponents previews
+    config.view_component.show_previews = true
+    config.view_component_storybook.stories_path = Rails.root.join("spec/components/stories")
   end
 end

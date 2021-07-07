@@ -1,7 +1,7 @@
 <div class="box-quarter">
   <div class=<%= class_for 'gridItem' %>>
     <div class=<%= class_for 'image' %>>
-      <%= render(Hat::Component.new(player.hat, 'playerImage')) %>
+      <%= render(Hat::Component.new(hat_name: player.hat, image_style: 'playerImage')) %>
     </div>
     <div class=<%= class_for 'name' %>><%= player.name %></div>
   </div>

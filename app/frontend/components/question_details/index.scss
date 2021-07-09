@@ -9,15 +9,6 @@
   margin-bottom: 1.6rem;
 }
 
-.title {
-  box-sizing: border-box;
-  height: 3.9rem;
-  padding-left: 1rem;
-  margin-bottom: 3.2rem;
-
-  width: 100%;
-}
-
 .answer {
   display: flex;
   position: relative;
@@ -51,13 +42,6 @@
 .answerIcon.active {
   background-image: url("../../../javascript/src/svg/checkmark.svg");
   border: none;
-}
-
-.answerText {
-  width: 100%;
-  padding: 1.75rem 0 1.75rem 5rem;
-  height: 100%;
-  border: 0;
 }
 
 .createQuestionButtons {

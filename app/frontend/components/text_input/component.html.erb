@@ -1,6 +1,15 @@
-<div class=<%= class_for "inputContainer" %>>
-  <% unless @label_text.blank? %>
+<div class=<%= class_for(container_class) %>>
+  <% if @label_text.present? %>
     <%= @form.label @field_name, @label_text, class: class_for('label') %>
   <% end %>
-    <%= @form.text_field @field_name, class: class_for('input'), placeholder: @placeholder %>
+
+  <%= @form.text_field @field_name, class: class_for(input_class), placeholder: @placeholder, **@input_data_attributes %>
+
+  <% if @form.object.errors[@field_name].present? %>
+    <div class="<%= class_for('invalid-feedback') %>">
+      <% @form.object.errors[@field_name].each do |msg| %>
+        <span><%= "#{@field_name.capitalize} #{msg}" %></span>
+      <% end %>
+    </div>
+  <% end %>
 </div>

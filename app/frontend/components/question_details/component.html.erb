@@ -9,10 +9,6 @@
                 }) do |form| %>
     <%= form.hidden_field :order, "data-#{identifier}-target": 'orderInput' %>
 
-    <% if form.object.errors.full_messages.present? %>
-      <p><%= form.object.errors.full_messages %></p>
-    <% end %>
-
     <%= form.hidden_field :quiz_id %>
 
     <div class="column-grid">
@@ -36,15 +32,11 @@
       </div>
     </div>
 
-    <%= form.label :title, 'Question', class: class_for('label') %>
-    <%= form.text_field :title, class: class_for('title') %>
+    <%= render(TextInput::Component.new(form: form, field_name: 'title', label_text: 'Question')) %>
 
     <div>
       <div class="column-grid">
         <%= form.fields_for :answers do |ff| %>
-          <% if ff.object.errors.full_messages.present? %>
-            <p><%= ff.object.errors.full_messages %></p>
-          <% end %>
 
           <div class="box-half">
             <%= content_tag(:div,
@@ -56,12 +48,13 @@
 
               <%= ff.hidden_field :is_correct, "data-#{identifier}-target": "selectedAnswer" %>
 
-              <%= ff.text_field :title,
-                                class:                       class_for('answerText'),
-                                placeholder:                 'Type an answer...',
-                                'data-action':               "click->#{identifier}#selectAnswer",
-                                "data-#{identifier}-target": "answer"
-              %>
+              <%= render(TextInput::Component.new(form: ff, field_name: 'title', placeholder: 'Type an answer...', variant: 'inline',
+                                                  input_data_attributes: {
+                                                    'data-action':               "click->#{identifier}#selectAnswer",
+                                                    "data-#{identifier}-target": "answer"
+                                                  })) %>
+
+
             <% end %>
           </div>
         <% end %>

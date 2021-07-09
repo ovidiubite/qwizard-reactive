@@ -3,6 +3,7 @@
 class NotifyQuestionStartJob < ApplicationJob
   def perform(lobby_id:, question_index:)
     @lobby = Lobby.find(lobby_id)
+    @lobby.players.update_all(game_state: :in_progress)
 
     @lobby.update!(current_question_index: question_index)
 

@@ -1,6 +1,7 @@
 class LobbiesController < ApplicationController
   skip_before_action :authenticate, only: %i[show pregame join answer]
-  before_action :set_lobby, only: %i[show edit update destroy]
+  before_action :set_lobby, only: %i[show edit]
+  before_action :set_current_player, only: %i[show edit]
 
   def index
     @lobbies = current_user.quizzes
@@ -39,11 +40,17 @@ class LobbiesController < ApplicationController
   end
 
   def start
+    @lobby = Lobby.find_by(id: params[:lobby_id])
+    set_current_player
+
     StartGame.new(lobby_id: params[:lobby_id]).call
   end
 
   # GET /lobbies/1
-  def show; end
+  def show
+    @question_index  = @lobby.current_question_index
+    @total_questions = @lobby.quiz.questions.count
+  end
 
   # GET /lobbies/new
   def new
@@ -63,6 +70,8 @@ class LobbiesController < ApplicationController
       @lobby.save!
       @player_master.save!
       session[:player_id] = @player_master.id
+      set_current_player
+      @current_player.update(:game_state, :pending)
     end
 
     redirect_to @lobby, notice: "Lobby was successfully created."
@@ -71,34 +80,15 @@ class LobbiesController < ApplicationController
     render_flash
   end
 
-  # PATCH/PUT /lobbies/1 or /lobbies/1.json
-  def update
-    respond_to do |format|
-      if @lobby.update(lobby_params)
-        format.html { redirect_to @lobby, notice: "Lobby was successfully updated." }
-        format.json { render :show, status: :ok, location: @lobby }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @lobby.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /lobbies/1 or /lobbies/1.json
-  def destroy
-    @lobby.destroy
-    respond_to do |format|
-      format.html { redirect_to lobbies_url, notice: "Lobby was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
-  def pregame;end
+  def pregame; end
 
   def join
     @lobby = Lobby.find(params[:lobby_id])
 
     session[:player_id] = JoinGame.new(@lobby, player_params).call
+    set_current_player
+
+    @current_player.update(:game_state, :pregame)
 
     redirect_to lobby_path(@lobby.id)
   end
@@ -140,5 +130,9 @@ class LobbiesController < ApplicationController
         locals: { answer_count: players.count }
       )
     )
+  end
+
+  def set_current_player
+    @current_player = @lobby.players.find_by(id: session[:player_id])
   end
 end

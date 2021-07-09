@@ -4,6 +4,7 @@ class NotifyLobbyEndJob < ApplicationJob
   def perform(lobby_id:, player_id:)
     @lobby = Lobby.find(lobby_id)
     @lobby.update!(status: :finished)
+    @lobby.players.update_all(game_state: :finished)
 
     broadcast_lobby_end(player_id: player_id)
   end

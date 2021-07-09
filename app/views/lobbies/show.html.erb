@@ -4,4 +4,18 @@
 <%= turbo_stream_from(@lobby, session[:player_id], Lobby::QUESTION_END) %>
 <%= turbo_stream_from(@lobby, session[:player_id], Lobby::LOBBY_END) %>
 <%= turbo_stream_from(@lobby, Lobby::ANSWER_SENT) %>
-<%= render(Lobby::Component.new(@lobby)) %>
+<div id="game">
+  <% case @current_player.game_state
+     when 'pending', 'pregame' %>
+    <%= render(Lobby::Component.new(@lobby)) %>
+  <% when 'counter' %>
+    <%= render CountDown::Component.new %>
+  <% when 'in_progress' %>
+    <%= render Question::Component.new(lobby: @lobby, question_index: @question_index, current_player_id: session[:player_id]) %>
+  <% when 'leaderboard' %>
+    <%= render ScoreInBetween::Component.new(lobby: @lobby, question_index: @question_index, total_questions: @total_questions, current_player_id: session[:player_id]) %>
+  <% when 'finished' %>
+    <%= render HallOfFame::Component.new(lobby: @lobby, current_player_id: session[:player_id]) %>
+  <% else %>
+  <% end %>
+</div>

@@ -2,6 +2,9 @@
   class="<%= class_for("button") %>"
   style="<%= "background-color: var(--#{@background_color}); color: var(--#{@color}); #{@outline ? 'border: .2rem solid black' : ''}" %>"
   type="<%= @submit ? 'submit' : 'button' %>"
+  data-controller=<%= identifier %>
+  data-<%= identifier %>-disabled=<%= disabled %>
+  data-<%= identifier %>-target="button"
 >
   <%= @title %>
 </button>

@@ -1,6 +1,6 @@
 class HallOfFame::Component < ApplicationViewComponent
-  param :lobby
-  param :current_player
+  option :lobby
+  option :current_player_id
 
   def quiz_title
     lobby.quiz.title

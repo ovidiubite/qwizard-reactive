@@ -1,8 +1,8 @@
 class ScoreInBetween::Component < ApplicationViewComponent
-  param :lobby
-  param :question_index
-  param :total_questions
-  param :current_player
+  option :lobby
+  option :question_index
+  option :total_questions
+  option :current_player_id
 
   def score
     CalculateScore.new(lobby: lobby).call

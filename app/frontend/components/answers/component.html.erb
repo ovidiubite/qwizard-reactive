@@ -1,0 +1,38 @@
+<%= form_with(url: lobby_answer_path(lobby_id: lobby.id),
+  data: { controller: identifier },
+  html: {
+    "data-#{identifier}-active-class": class_for('active'),
+    "data-#{identifier}-disabled-class": class_for('disabled')
+  }) do %>
+  <div class=<%= class_for 'grid' %>>
+    <div class="column-grid <%= class_for 'grid' %>">
+      <%= hidden_field_tag 'answers[]', nil, data: { "#{identifier}-target": 'selectedAnswers' } %>
+      <% answers.each do |a| %>
+        <%= content_tag(:div, '',
+          class:                       "box-half #{class_for 'gridItem'} #{class_for 'disabled' if finalised}",
+          data: {
+            "#{identifier}-target": "answer",
+            "#{identifier}-answer":  a.id,
+            'action':               "click->#{identifier}#selectAnswer"
+          }) do %>
+
+          <%= content_tag(:div, '',
+            class: "#{class_for('answer')}
+            #{class_for('correct') if state(a) && correct(a)}
+            #{class_for('wrong') if state(a) && !correct(a)}
+            #{class_for('active') if active(a.id)}",
+            data:  { "#{identifier}-target": 'answerContainer' }) do %>
+            <div class=<%= class_for 'icon' %>></div>
+            <div class=<%= class_for 'text' %>>
+              <%=  a.title %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class=<%= class_for 'button'%>>
+    <%= render(Button::Component.new('CAST ANSWER', disabled: finalised)) %>
+  </div>
+<% end %>

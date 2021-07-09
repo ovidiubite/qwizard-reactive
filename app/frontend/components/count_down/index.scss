@@ -1,0 +1,39 @@
+.inbetween {
+  width: 100%;
+  padding: 2.5rem 0;
+}
+
+.inbetweenContentContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heading {
+  color: var(--white);
+  margin-bottom: 2.4rem;
+}
+
+.logo {
+  margin-bottom: 3.3rem;
+}
+
+.count {
+  color: var(--white);
+  margin-bottom: 4rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.bg {
+  background-image: url("../../../javascript/src/images/bg@2x.png");
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.5;
+}

@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate
+  before_action :clear_flash
 
   private
+
+  def clear_flash
+    flash.clear
+  end
 
   def authenticate
     redirect_to new_session_path unless logged_in?

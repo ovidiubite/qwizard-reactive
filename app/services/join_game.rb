@@ -15,5 +15,7 @@ class JoinGame
             locals: {player: @player}
         )
     )
+
+    @player.id
   end
 end

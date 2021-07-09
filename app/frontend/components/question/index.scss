@@ -1,0 +1,85 @@
+.question {
+  flex-direction: column;
+  width: 100%;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.image {
+  width: 47.7rem;
+  height: 30rem;
+  margin-bottom: 3.6rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.imageBackground {
+  background-color: var(--dark-asphalt);
+}
+
+.img {
+  max-width: 47.7rem;
+  max-height: 30rem;
+}
+
+.utils {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 17.3rem;
+  right: 7.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.time {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: var(--black);
+  line-height: 1.35;
+  border-radius: 1rem;
+  color: var(--white);
+  font-size: 3rem;
+  margin-bottom: 5.3rem;
+}
+
+.hourglass {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.count {
+  position: relative;
+  text-align: center;
+  border-radius: 1rem;
+  background-color: var(--dirty-gold);
+  color: var(--white);
+  font-size: 3rem;
+  line-height: 1.18;
+}
+
+.wand {
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.number {
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0 3.8rem;
+}
+
+.text {
+  margin-bottom: 5.6rem;
+  text-align: center;
+}

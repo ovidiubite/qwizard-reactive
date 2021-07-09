@@ -6,9 +6,9 @@
       </div>
       <div class=<%= class_for 'contentContainer' %>>
         <h2 class=<%= class_for 'title' %>><%= quiz_title %> Hall of Fame</h2>
-        <%= render(TopPlayers::Component.new(score)) %>
+        <%= render(TopPlayers::Component.new(score: score)) %>
         <% if score.length > 3 %>
-          <%= render(LeaderBoard::Component.new(score, current_player, hide_to_three: true)) %>
+          <%= render(LeaderBoard::Component.new(score: score, current_player_id: current_player_id, hide_to_three: true)) %>
         <% end %>
         <%= link_to lobbies_path do %>
           <div class=<%= class_for 'button' %>>

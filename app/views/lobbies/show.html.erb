@@ -1,2 +1,7 @@
 <%= turbo_stream_from(@lobby, :players) %>
+<%= turbo_stream_from(@lobby, Lobby::LOBBY_START) %>
+<%= turbo_stream_from(@lobby, Lobby::QUESTION_START) %>
+<%= turbo_stream_from(@lobby, session[:player_id], Lobby::QUESTION_END) %>
+<%= turbo_stream_from(@lobby, session[:player_id], Lobby::LOBBY_END) %>
+<%= turbo_stream_from(@lobby, Lobby::ANSWER_SENT) %>
 <%= render(Lobby::Component.new(@lobby)) %>

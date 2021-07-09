@@ -1,0 +1,5 @@
+<%= render_flash %>
+
+<%= turbo_stream.update 'answers_section' do %>
+  <%= render Answers::Component.new(lobby: @lobby, current_player_id: @player_id, answers: @answers) %>
+<% end %>

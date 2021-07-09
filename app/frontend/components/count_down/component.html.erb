@@ -1,0 +1,12 @@
+<div class=<%= class_for 'inbetween' %>>
+  <div class=<%= class_for 'bg' %>></div>
+  <div class=class="box-wide">
+    <div class=<%= class_for 'inbetweenContentContainer' %>>
+      <div class=<%= class_for 'logo'%>>
+        <%= image_pack_tag "media/src/svg/logoWhite.svg", alt: 'White Qwizard logo' %>
+      </div>
+
+      <%= render Counter::Component.new %>
+    </div>
+  </div>
+</div>

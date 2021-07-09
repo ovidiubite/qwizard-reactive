@@ -1,0 +1,48 @@
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 50rem;
+}
+
+.numbers {
+  display: flex;
+  justify-content: center;
+  width: 12rem;
+  line-height: 0;
+}
+
+.topText,
+.bottomText {
+  color: var(--white);
+}
+
+.number {
+  position: absolute;
+  opacity: 0;
+  animation: show 1s forwards;
+  color: var(--white);
+  font-size: 24.3rem;
+}
+
+.second {
+  animation: show 1s 1s forwards;
+}
+
+.third {
+  animation: show 1s 2s forwards;
+}
+
+@keyframes show {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

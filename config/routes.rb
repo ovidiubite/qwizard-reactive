@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   resources :lobbies do
     post :join
     get :pregame
+    post :start
+    post :answer
   end
+
   resources :answers
   resources :quizzes do
     resources :questions

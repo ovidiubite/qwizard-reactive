@@ -1,0 +1,37 @@
+<%= render BookPage::Component.new do %>
+  <div class=<%= class_for 'question'%>>
+    <h1 class=<%= class_for 'number'%>>
+      <%= question_index %> / <%= total_questions %>
+    </h1>
+    <div class=<%= class_for 'hero' %>>
+      <div class="<%= class_for 'image' %> <%= class_for('imageBackground') if !question.image.attached? %>">
+        <% if question.image.attached? %>
+          <%= image_pack_tag url_for(question.image), alt: 'cristal globe', class: class_for('img') %>
+        <% else %>
+          <%= image_pack_tag "media/src/svg/placeholderImage.svg", alt: 'cristal globe', class: class_for('img') %>
+        <% end %>
+      </div>
+      <div class=<%= class_for 'utils' %>>
+        <div class=<%= class_for 'time' %>>
+          <%= image_pack_tag "media/src/svg/hourglass.svg", alt: 'Hourglass', class: class_for('hourglass') %>
+          <%= content_tag(:span, timer, data: { controller: identifier, "#{identifier}-target": 'timer' }) %>
+          sec
+        </div>
+        <div class=<%= class_for 'count' %>>
+          <%= image_pack_tag "media/src/svg/wand.svg", alt: 'wand', class: class_for('wand') %>
+          <div>
+            <span id="counter"><%= answers_count %></span> <br />
+            answers
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3 class=<%= class_for 'text' %>>
+      <%= question&.title %>
+    </h3>
+
+    <%= turbo_frame_tag :answers_section do %>
+      <%= render Answers::Component.new(lobby: lobby, current_player_id: current_player_id, answers: answers) %>
+    <% end %>
+  </div>
+<% end %>

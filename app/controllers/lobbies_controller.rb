@@ -1,5 +1,5 @@
 class LobbiesController < ApplicationController
-  skip_before_action :authenticate, only: %i[show pregame join]
+  skip_before_action :authenticate, only: %i[show pregame join answer]
   before_action :set_lobby, only: %i[show edit update destroy]
 
   def index
@@ -12,9 +12,38 @@ class LobbiesController < ApplicationController
     render :index
   end
 
-  # GET /lobbies/1 or /lobbies/1.json
-  def show
+  def answer
+    player = Player.find_by(id: session[:player_id])
+
+    return head :not_found if player.blank?
+
+    @lobby = Lobby.find(params[:lobby_id])
+    question = @lobby.quiz.questions.find_by(order: @lobby.current_question_index)
+
+    create_player_answers(player, question)
+
+    notify_answer_count(@lobby)
+
+    if answered_correct?(question.answers)
+      flash[:notice] = "Correct! +#{question.points}"
+    else
+      flash[:error] = 'Wrong'
+    end
+
+    @answers = question.answers
+    @player_id = player.id
   end
+
+  def answered_correct?(answers)
+    answers.where(is_correct: true).map(&:id).sort == params[:answers].map(&:to_i).sort
+  end
+
+  def start
+    StartGame.new(lobby_id: params[:lobby_id]).call
+  end
+
+  # GET /lobbies/1
+  def show; end
 
   # GET /lobbies/new
   def new
@@ -33,6 +62,7 @@ class LobbiesController < ApplicationController
     ActiveRecord::Base.transaction do
       @lobby.save!
       @player_master.save!
+      session[:player_id] = @player_master.id
     end
 
     redirect_to @lobby, notice: "Lobby was successfully created."
@@ -68,7 +98,7 @@ class LobbiesController < ApplicationController
   def join
     @lobby = Lobby.find(params[:lobby_id])
 
-    JoinGame.new(@lobby, player_params).call
+    session[:player_id] = JoinGame.new(@lobby, player_params).call
 
     redirect_to lobby_path(@lobby.id)
   end
@@ -86,5 +116,29 @@ class LobbiesController < ApplicationController
 
   def player_params
     params.require(:player).permit(:name, :hat)
+  end
+
+  def create_player_answers(player, question)
+    PlayerAnswer.where(player: player, answer_id: question.answers.map(&:id)).destroy_all
+
+    params[:answers].each do |id|
+      answer = Answer.find(id)
+      PlayerAnswer.create(player: player, answer: answer)
+    end
+  end
+
+  def notify_answer_count(lobby)
+    players = lobby.players.to_a.select do |p|
+      p.player_answers.any? { |pa| pa.answer.question.order == lobby.current_question_index }
+    end
+
+    Turbo::StreamsChannel.broadcast_stream_to(
+      lobby, Lobby::ANSWER_SENT,
+      content: ApplicationController.render(
+        :turbo_stream,
+        partial: 'lobbies/update_counter',
+        locals: { answer_count: players.count }
+      )
+    )
   end
 end

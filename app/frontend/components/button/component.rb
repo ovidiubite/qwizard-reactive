@@ -5,4 +5,5 @@ class Button::Component < ApplicationViewComponent
   option :color, default: proc { 'white' }
   option :submit, default: proc { true }
   option :outline, default: proc { false }
+  option :disabled, default: proc { false }
 end

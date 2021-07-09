@@ -1,13 +1,13 @@
 class LeaderBoard::Component < ApplicationViewComponent
-  param :score
-  param :current_player
+  option :score
+  option :current_player_id
 
   option :hide_to_three, default: proc { false }
 
   def highlighted?(player_id)
-    return false if current_player.nil?
+    return false if current_player_id.nil?
 
-    current_player.id === player_id
+    current_player_id == player_id
   end
 
   def scores

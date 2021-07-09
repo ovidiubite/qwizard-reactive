@@ -1,5 +1,5 @@
 class TopPlayers::Component < ApplicationViewComponent
-  param :score
+  option :score
 
   FRAMES = {
     0 => "Red",

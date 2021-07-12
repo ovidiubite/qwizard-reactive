@@ -1,4 +1,4 @@
-<%= turbo_frame_tag :question_details do %>
+<%= turbo_frame_tag :question_details, data: { controller: identifier } do %>
   <div class="<%= class_for('quiz') %>">
     <%= form_with(model: [@quiz, @question],
                   data:  { 'turbo-frame': '_top' }) do |form| %>
@@ -35,7 +35,7 @@
 
       <div class="<%= class_for('createQuestionButtons') %>">
         <div class="<%= class_for('button') %>">
-          <%= link_to suggest_question_quiz_questions_path(id: @quiz.id, question_id: @question.id), 'data-turbo-frame': '_top' do %>
+          <%= link_to suggest_question_quiz_questions_path(id: @quiz.id, question_id: @question.id), data: { action: "click->#{identifier}#reset"} do %>
             <%= render(Button::Component.new('Suggest question', background_color: 'light-brown', submit: false)) %>
           <% end  %>
         </div>

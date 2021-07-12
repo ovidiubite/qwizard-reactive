@@ -1,0 +1,38 @@
+<%= content_tag(:div,
+                'data-controller': identifier,
+                "data-#{identifier}-active-class": class_for('active')) do %>
+
+  <%= form.label :title, 'Question', class: class_for('label') %>
+  <%= form.text_field :title, class: class_for('title') %>
+
+  <div>
+    <div class="column-grid">
+      <% form.fields_for :answers do |ff| %>
+        <% if ff.object.errors.full_messages.present? %>
+          <p><%= ff.object.errors.full_messages %></p>
+        <% end %>
+
+        <div class="box-half">
+          <%= content_tag(:div,
+                          class:                       "#{class_for('answer')} #{ff.object.is_correct && class_for('active')}",
+                          "data-#{identifier}-target": "selectedAnswerContainer") do %>
+            <%= content_tag(:div, '',
+                            class:                       "#{class_for('answerIcon')} #{ff.object.is_correct && class_for('active')}",
+                            "data-#{identifier}-target": "selectedAnswerIcon") %>
+
+            <%= ff.hidden_field :is_correct, "data-#{identifier}-target": "selectedAnswer" %>
+
+            <%= ff.hidden_field :id %>
+
+            <%= ff.text_field :title,
+                              class:                       class_for('answerText'),
+                              placeholder:                 'Type an answer...',
+                              'data-action':               "click->#{identifier}#selectAnswer",
+                              "data-#{identifier}-target": "answer"
+            %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

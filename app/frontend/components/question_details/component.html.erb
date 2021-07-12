@@ -1,68 +1,48 @@
-<div class="<%= class_for('quiz') %>">
-  <%= form_with(model: [@quiz, @question],
-                data:  { 'turbo-frame': '_top',
-                         controller:    identifier, },
-                html:  {
-                  "data-#{identifier}-active-class": class_for('active'),
-                  "data-#{identifier}-target":       'form',
-                  "data-action":                     @question.id.blank? && "turbo:submit-end->#{identifier}#reset"
-                }) do |form| %>
-    <%= form.hidden_field :order, "data-#{identifier}-target": 'orderInput' %>
+<%= turbo_frame_tag :question_details do %>
+  <div class="<%= class_for('quiz') %>">
+    <%= form_with(model: [@quiz, @question],
+                  data:  { 'turbo-frame': '_top' }) do |form| %>
+      <%= form.hidden_field :order %>
 
-    <%= form.hidden_field :quiz_id %>
+      <% if form.object.errors.full_messages.present? %>
+        <p><%= form.object.errors.full_messages %></p>
+      <% end %>
 
-    <div class="column-grid">
-      <div class="box-third">
-        <%= form.label :time_limit, class: class_for('label') %>
-        <%= render(Select::Component.new) do %>
-          <%= form.select :time_limit, [['20 sec', 20], ['30 sec', 30]] %>
-        <% end %>
+      <%= form.hidden_field :quiz_id %>
 
-        <%= form.label :points, class: class_for('label') %>
-        <%= render(Slider::Component.new(form, :points)) %>
-
-        <%= form.label :answer_type, 'Answer options', class: class_for('label') %>
-        <%= render(Select::Component.new) do %>
-          <%= form.select :answer_type, [['Single select', 'single'], ['Multi select', 'multiple']] %>
-        <% end %>
-      </div>
-
-      <div class="box-two-thirds">
-        <%= render(DragAndDrop::Component.new(form, label: 'Question image')) %>
-      </div>
-    </div>
-
-    <%= render(TextInput::Component.new(form: form, field_name: 'title', label_text: 'Question')) %>
-
-    <div>
       <div class="column-grid">
-        <%= form.fields_for :answers do |ff| %>
+        <div class="box-third">
+          <%= form.label :time_limit, class: class_for('label') %>
+          <%= render(Select::Component.new) do %>
+            <%= form.select :time_limit, [['20 sec', 20], ['30 sec', 30]] %>
+          <% end %>
 
-          <div class="box-half">
-            <%= content_tag(:div,
-                            class:                       "#{class_for('answer')} #{ff.object.is_correct && class_for('active')}",
-                            "data-#{identifier}-target": "selectedAnswerContainer") do %>
-              <%= content_tag(:div, '',
-                              class:                       "#{class_for('answerIcon')} #{ff.object.is_correct && class_for('active')}",
-                              "data-#{identifier}-target": "selectedAnswerIcon") %>
+          <%= form.label :points, class: class_for('label') %>
+          <%= render(Slider::Component.new(form, :points)) %>
 
-              <%= ff.hidden_field :is_correct, "data-#{identifier}-target": "selectedAnswer" %>
+          <%= form.label :answer_type, 'Answer options', class: class_for('label') %>
+          <%= render(Select::Component.new) do %>
+            <%= form.select :answer_type, [['Single select', 'single'], ['Multi select', 'multiple']] %>
+          <% end %>
+        </div>
 
-              <%= render(TextInput::Component.new(form: ff, field_name: 'title', placeholder: 'Type an answer...', variant: 'inline',
-                                                  input_data_attributes: {
-                                                    'data-action':               "click->#{identifier}#selectAnswer",
-                                                    "data-#{identifier}-target": "answer"
-                                                  })) %>
-
-
-            <% end %>
-          </div>
-        <% end %>
+        <div class="box-two-thirds">
+          <%= render(DragAndDrop::Component.new(form, label: 'Question image')) %>
+        </div>
       </div>
-    </div>
 
-    <div class="<%= class_for('createQuestionButtons') %>">
-      <%= render(Button::Component.new(form.object.id.present? ? 'SAVE' : 'ADD', background_color: 'purple')) %>
-    </div>
-  <% end %>
-</div>
+      <%= render(QuestionText::Component.new(form)) %>
+
+      <div class="<%= class_for('createQuestionButtons') %>">
+        <div class="<%= class_for('button') %>">
+          <%= link_to suggest_question_quiz_questions_path(id: @quiz.id, question_id: @question.id), 'data-turbo-frame': '_top' do %>
+            <%= render(Button::Component.new('Suggest question', background_color: 'light-brown', submit: false)) %>
+          <% end  %>
+        </div>
+        <div class="<%= class_for('button') %>">
+          <%= render(Button::Component.new(form.object.id.present? ? 'SAVE' : 'ADD', background_color: 'purple')) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

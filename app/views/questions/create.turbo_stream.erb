@@ -1,2 +1,5 @@
 <%= render_flash %>
 <%= turbo_stream.append 'questions', @question %>
+<%= turbo_stream.update 'question' do %>
+  <%= render(QuestionDetails::Component.new(@quiz, Question.empty_question(@quiz))) %>
+<% end %>

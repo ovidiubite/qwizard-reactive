@@ -2,6 +2,46 @@ class QuestionsController < ApplicationController
   before_action :set_quiz
   before_action :set_question, only: %i[ show edit update destroy ]
 
+  def suggest_question
+    suggestion = SuggestQuestion.new.call
+
+    question_suggestion = suggestion[:question]
+    answers_suggestion = suggestion[:answers]
+
+    if params[:question_id]
+      @question = Question.find(params[:question_id])
+      @question.assign_attributes(
+        {
+          title: question_suggestion.title,
+          time_limit: question_suggestion.time_limit,
+          points: question_suggestion.points,
+          answer_type: question_suggestion.answer_type
+        }
+      )
+      @question.id = params[:question_id]
+
+      @answers = @question.answers
+      @answers.map.with_index do |answer, index|
+        answer.assign_attributes(
+          {
+            title: answers_suggestion[index].title,
+            is_correct: answers_suggestion[index].is_correct
+          }
+        )
+      end
+    else
+      @question = question_suggestion
+      @question.quiz_id = @quiz.id
+      @question.order = (@quiz.questions.pluck(:order).max.presence || 0) + 1
+      @question.answers = answers_suggestion
+    end
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace('question_details', partial: 'questions/suggest_question') }
+      format.html { render params[:question_id] ? :edit : :new }
+    end
+  end
+
   # GET /questions or /questions.json
   def index
     @questions = Question.all
@@ -13,12 +53,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
-
-    @question.quiz_id = @quiz.id
-    @question.points  = 100
-    @question.order   = (@quiz.questions.pluck(:order).max.presence || 0) + 1
-    @question.answers = 4.times.map { Answer.new }
+    @question = Question.empty_question(@quiz)
   end
 
   # GET /questions/1/edit

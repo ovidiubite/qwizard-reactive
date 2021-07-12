@@ -3,7 +3,7 @@
     <%= render(QuizTitleInput::Component.new(@quiz)) %>
 
     <%= turbo_frame_tag :questions do %>
-      <% @quiz.questions.each do |question| %>
+      <% @quiz.questions.order(:order).each do |question| %>
         <%= render(QuestionItem::Component.new(@quiz, question, active: @question.id == question.id)) %>
       <% end %>
     <% end %>

@@ -9,43 +9,12 @@
   margin-bottom: 1.6rem;
 }
 
-.answer {
-  display: flex;
-  position: relative;
-  align-items: center;
-  width: 100%;
-  background: var(--white);
-  font-size: 1.7rem;
-  line-height: 2.71;
-  box-sizing: border-box;
-  max-width: 40rem;
-  border: 0.2rem solid transparent;
-  cursor: pointer;
-
-  margin-bottom: 3rem;
-}
-
-.answer.active {
-  border: 0.2rem solid var(--turqouise);
-}
-
-.answerIcon {
-  position: absolute;
-  width: 2.4rem;
-  height: 2.4rem;
-  left: 1.7rem;
-  border-radius: 50%;
-  border: 0.3rem solid var(--turqouise);
-  box-sizing: border-box;
-}
-
-.answerIcon.active {
-  background-image: url("../../../javascript/src/svg/checkmark.svg");
-  border: none;
-}
-
 .createQuestionButtons {
   display: flex;
   justify-content: flex-end;
   margin-top: 4.4rem;
+}
+
+.button:first-child {
+  margin-right: 3.2rem;
 }

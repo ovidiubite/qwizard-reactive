@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   resources :answers
   resources :quizzes do
-    resources :questions
+    resources :questions do
+      get 'suggest_question', action: :suggest_question, on: :collection
+    end
   end
   resources :sessions, only: [:new, :create]
   resources :registrations, only: [:new, :create]

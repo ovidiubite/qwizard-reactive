@@ -27,8 +27,10 @@
     Waiting for fellow qwizards...
   </h6>
 
-  <%= form_tag lobby_start_path(lobby_id: lobby.id) do %>
-    <%= render(Button::Component.new('START', background_color: 'purple')) %>
+  <% if quiz_master.id == @current_player.user_id %>
+    <%= form_tag lobby_start_path(lobby_id: lobby.id) do %>
+      <%= render(Button::Component.new('START', background_color: 'purple')) %>
+    <% end %>
   <% end %>
 <% end %>
 

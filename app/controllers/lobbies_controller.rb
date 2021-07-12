@@ -64,7 +64,7 @@ class LobbiesController < ApplicationController
   # POST /lobbies or /lobbies.json
   def create
     @lobby = Lobby.new(lobby_params.merge(code: SecureRandom.alphanumeric(6), status: 'pending'))
-    @player_master = Player.new(name: current_user.username, hat: current_user.hat, lobby: @lobby)
+    @player_master = Player.new(name: current_user.username, hat: current_user.hat, lobby: @lobby, user_id: current_user.id)
 
     ActiveRecord::Base.transaction do
       @lobby.save!

@@ -7,7 +7,7 @@
 <div id="game">
   <% case @current_player.game_state
      when 'pending', 'pregame' %>
-    <%= render(Lobby::Component.new(@lobby)) %>
+    <%= render(Lobby::Component.new(lobby: @lobby, current_player: @current_player)) %>
   <% when 'counter' %>
     <%= render CountDown::Component.new %>
   <% when 'in_progress' %>

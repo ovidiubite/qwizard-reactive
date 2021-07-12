@@ -1,5 +1,6 @@
 class Lobby::Component < ApplicationViewComponent
-  param :lobby
+  option :lobby
+  option :current_player
 
   def quiz
     @lobby.quiz

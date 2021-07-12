@@ -6,23 +6,23 @@
           ])) do %>
     <% end %>
   <% end %>
-  
+
   <div class=<%= class_for 'quizLibrary' %>>
     <div class=<%= class_for 'settingsContainer' %>>
       <%=link_to edit_user_settings_path do %>
         <div class=<%= class_for 'settings'%>>
           <%= image_pack_tag "media/src/svg/wizardHead.svg",
             alt: 'Wizard head with a wizard hat',
-            class: class_for('settingsIcon')   %>          
+            class: class_for('settingsIcon')   %>
             <div>User settings</div>
         </div>
-      <% end %> 
+      <% end %>
 
-      <div  class=<%= class_for 'logout' %>>
+      <%= button_to logout_path, class: class_for('logout'), method: :delete do %>
         <%= image_pack_tag "media/src/svg/logout.svg",
-            alt: 'A door and an arrow suggesting exit',
-            class: class_for('settingsIcon') %> 
-      </div>
+                           alt: 'A door and an arrow suggesting exit',
+                           class: class_for('settingsIcon') %>
+      <% end %>
     </div>
 
     <div class="column-grid">
@@ -32,7 +32,7 @@
         </div>
         <h6 class=<%= class_for 'text' %>>Create an enchanting quiz</h6>
 
-        <%= form_tag quizzes_path, class: class_for('buttonContainer') do %> 
+        <%= form_tag quizzes_path, class: class_for('buttonContainer') do %>
           <%= render(Button::Component.new('CREATE')) %>
         <% end %>
       </div>

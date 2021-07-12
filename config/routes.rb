@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'lobbies/finished', to: 'lobbies#finished', as: :finished_lobbies
   get 'user_settings', to: 'user_settings#edit', as: :edit_user_settings
   patch 'user_settings', to: 'user_settings#update', as: :update_user_settings
+  delete :logout, to: 'sessions#logout'
 
 
   resources :players

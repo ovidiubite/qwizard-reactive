@@ -1,4 +1,7 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
   root 'lobbies#index'
   get 'lobbies/finished', to: 'lobbies#finished', as: :finished_lobbies
   get 'user_settings', to: 'user_settings#edit', as: :edit_user_settings

@@ -71,7 +71,7 @@ class LobbiesController < ApplicationController
       @player_master.save!
       session[:player_id] = @player_master.id
       set_current_player
-      @current_player.update(:game_state, :pending)
+      @current_player.update({ game_state: :pending })
     end
 
     redirect_to @lobby, notice: "Lobby was successfully created."
@@ -88,7 +88,7 @@ class LobbiesController < ApplicationController
     session[:player_id] = JoinGame.new(@lobby, player_params).call
     set_current_player
 
-    @current_player.update(:game_state, :pregame)
+    @current_player.update({ game_state: :pregame })
 
     redirect_to lobby_path(@lobby.id)
   end

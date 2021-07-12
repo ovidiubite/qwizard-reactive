@@ -17,5 +17,6 @@
   <% when 'finished' %>
     <%= render HallOfFame::Component.new(lobby: @lobby, current_player_id: session[:player_id]) %>
   <% else %>
+    <%= render(Lobby::Component.new(@lobby)) %>
   <% end %>
 </div>

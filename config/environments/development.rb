@@ -1,9 +1,18 @@
 require "active_support/core_ext/integer/time"
+require 'socket'
+require 'ipaddr'
 
 Rails.application.configure do
   config.session_store :cache_store
 
-  config.action_controller.asset_host = 'http://localhost:3000'
+  config.action_controller.asset_host = ENV.fetch('ASSET_HOST') { 'http://localhost:3000' }
+  config.action_cable.url = ENV.fetch('CABLE_URL') { 'ws://localhost:3000/cable' }
+  config.action_cable.allowed_request_origins = [
+    ENV.fetch('APP_URL') { 'http://localhost:3000/' }
+  ]
+  config.web_console.whitelisted_ips = Socket.ip_address_list.reduce([]) do |res, addrinfo|
+    addrinfo.ipv4? ? res << IPAddr.new(addrinfo.ip_address).mask(24) : res
+  end
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time

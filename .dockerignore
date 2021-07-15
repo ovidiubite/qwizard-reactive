@@ -1,0 +1,12 @@
+.git
+.dockerignore
+.byebug_history
+node_modules
+/log/*
+/tmp/*
+
+.env*
+!.env.docker
+
+.idea/*
+*.iml
